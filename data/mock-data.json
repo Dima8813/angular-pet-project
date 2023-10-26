@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "johndoe",
+      "email": "johndoe@example.com",
+      "profile_picture": "https://example.com/profile_pictures/johndoe.jpg",
+      "bio": "This is my bio.",
+      "number_of_posts": 0,
+      "number_of_followers": 0,
+      "number_following": 0,
+      "password": "qwerty123",
+      "name": "John",
+      "surname": "Doe"
+    }
+  ]
+}

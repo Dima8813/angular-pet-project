@@ -8,6 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "npx eslint \"src/**/*.{js,jsx,ts,tsx,html}\" --quiet --fix",
+    "server": "npx json-server-auth -p 3500 -w data/mock-data.json",
+    "dev": "concurrently \"npm run server\" \"npm run start\"",
     "prettier": "npx prettier --write ."
   },
   "private": true,
@@ -21,6 +23,8 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "concurrently": "^8.2.2",
+    "json-server-auth": "^2.1.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
