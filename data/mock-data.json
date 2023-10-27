@@ -4,14 +4,20 @@
       "id": 1,
       "username": "johndoe",
       "email": "johndoe@example.com",
-      "profile_picture": "https://example.com/profile_pictures/johndoe.jpg",
+      "profile_picture": "",
       "bio": "This is my bio.",
-      "number_of_posts": 0,
-      "number_of_followers": 0,
-      "number_following": 0,
       "password": "qwerty123",
       "name": "John",
       "surname": "Doe"
+    },
+    {
+      "email": "test@gmail.com",
+      "password": "$2a$10$VqqMSkZ7VoXjah9vUfrYMec9Mf3e3aOpYMr/zj9TEzz3YuqY0FhXa",
+      "username": "DimaK",
+      "name": "Dima",
+      "surname": "Kudriavtsev",
+      "bio": "Frontend dev",
+      "id": 2
     }
   ]
 }

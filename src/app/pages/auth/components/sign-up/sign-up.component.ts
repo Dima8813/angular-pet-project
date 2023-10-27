@@ -1,24 +1,28 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Subject, takeUntil } from 'rxjs';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { Subject, takeUntil, tap } from 'rxjs';
 
 import { AuthService } from '@shared/services';
 import { User } from '@core/interfaces';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.scss'],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnDestroy {
+export class SignUpComponent implements OnDestroy {
   public form = this.fb.group({
-    email: ['Dima', [Validators.required, Validators.email]],
-    password: ['Kudriavtsev', [Validators.required, Validators.minLength(4)]],
+    email: ['', [Validators.required, Validators.email]],
+    username: ['', Validators.required],
+    name: [''],
+    surname: [''],
+    bio: [''],
+    password: ['', [Validators.required, Validators.minLength(4)]],
   });
 
   private destroyed$: Subject<void> = new Subject();
@@ -36,14 +40,12 @@ export class LoginComponent implements OnDestroy {
 
   public onSubmit(): void {
     const formValue = this.form.value as User;
-
     this.authService
-      .login(formValue)
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe(() => {
-        this.form.reset();
-        this.router.navigate(['users']);
-      });
-    this.form.reset();
+      .registration(formValue)
+      .pipe(
+        tap(() => this.router.navigate(['login'])),
+        takeUntil(this.destroyed$)
+      )
+      .subscribe();
   }
 }
