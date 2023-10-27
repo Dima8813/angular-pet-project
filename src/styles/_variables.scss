@@ -1,0 +1,48 @@
+$light-blue: #eff4f8;
+$turquoise: #00a0af;
+$white: #fff;
+$black: #0c0d0d;
+$gray: #808191;
+$light-gray: #d7dadb;
+$green: #68cd60;
+$red: #e63131;
+
+//Typography
+$font-family-base: Roboto, Helvetica, Arial, sans-serif;
+$font-size-base: 1rem;
+$font-line-height-base: 1.25;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-middle: 500;
+$font-weight-bold: 700;
+$font-weight-strong: 900;
+
+$bg-base: #e0edf5;
+$color-base: $black;
+
+$color-link: $turquoise;
+
+$gap: 8px;
+$border-radius-base: 4px;
+
+$link-color-base: $turquoise;
+
+// transition
+$transition-base: 0.4s;
+
+// Form
+$bg-color-field-form: $white;
+$border-field-form: $light-gray;
+$border-field-form-valid: $turquoise;
+$border-field-form-invalid: $red;
+
+$bg-btn: $turquoise;
+$color-btn: $white;
+$border-radius-btn: $border-radius-base;
+$font-weight-btn: $font-weight-middle;
+$color-btn-hover: $turquoise;
+
+$bg-btn-disabled: $light-gray;
+$border-color-btn-disabled: $light-gray;
+$color-btn-disabled: $white;

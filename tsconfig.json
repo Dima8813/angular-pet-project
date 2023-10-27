@@ -19,6 +19,8 @@
     "target": "es2020",
     "module": "es2020",
     "lib": ["es2020", "dom"],
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
     "paths": {
       "@core": ["./src/app/core"],
       "@core/*": ["./src/app/core/*"],

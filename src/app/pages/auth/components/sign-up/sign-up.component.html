@@ -1,5 +1,5 @@
 <form class="auth-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <h1>Login</h1>
+  <h1>Registration</h1>
   <div class="form-field">
     <label class="form-field__label" for="email">Email</label>
     <input
@@ -18,6 +18,49 @@
         Email is not correct
       </div>
     </ng-container>
+  </div>
+  <div class="form-field">
+    <label class="form-field__label" for="email">Username</label>
+    <input
+      name="username"
+      id="username"
+      type="text"
+      placeholder="Username"
+      formControlName="username" />
+    <ng-container *ngIf="form.controls.username as username">
+      <div
+        *ngIf="username.dirty && username.hasError('required')"
+        class="input-error">
+        This is field is required
+      </div>
+    </ng-container>
+  </div>
+  <div class="form-field">
+    <label class="form-field__label" for="email">Name</label>
+    <input
+      name="name"
+      id="name"
+      type="text"
+      placeholder="Name"
+      formControlName="name" />
+  </div>
+  <div class="form-field">
+    <label class="form-field__label" for="email">Surname</label>
+    <input
+      name="surname"
+      id="surname"
+      type="text"
+      placeholder="Surname"
+      formControlName="surname" />
+  </div>
+  <div class="form-field">
+    <label class="form-field__label" for="bio">Bio</label>
+    <input
+      name="bio"
+      id="bio"
+      type="text"
+      placeholder="Bio"
+      formControlName="bio" />
   </div>
   <div class="form-field">
     <label class="form-field__label" for="password">Password</label>
@@ -44,7 +87,7 @@
   </div>
   <button class="btn" [disabled]="form.invalid || form.pending">Save</button>
   <p class="align-center m-0 fw-middle">
-    Don't have account?
-    <a class="auth-form__Link" routerLink="/sign-up">Signup now</a>
+    Already have account?
+    <a class="auth-form__Link" routerLink="/login">Login now</a>
   </p>
 </form>

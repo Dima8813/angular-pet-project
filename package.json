@@ -10,7 +10,7 @@
     "lint": "npx eslint \"src/**/*.{js,jsx,ts,tsx,html}\" --quiet --fix",
     "server": "npx json-server-auth -p 3500 -w data/mock-data.json",
     "dev": "concurrently \"npm run server\" \"npm run start\"",
-    "prettier": "npx prettier --write ."
+    "format": "npx prettier --write ."
   },
   "private": true,
   "dependencies": {
