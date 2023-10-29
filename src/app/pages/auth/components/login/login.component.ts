@@ -6,6 +6,7 @@ import { Router, RouterModule } from '@angular/router';
 
 import { AuthService } from '@shared/services';
 import { User } from '@core/interfaces';
+import { AppRouteEnum } from '@core/enums';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +18,10 @@ import { User } from '@core/interfaces';
 })
 export class LoginComponent implements OnDestroy {
   public form = this.fb.group({
-    email: ['Dima', [Validators.required, Validators.email]],
-    password: ['Kudriavtsev', [Validators.required, Validators.minLength(4)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(4)]],
   });
+  public readonly appRouteEnum = AppRouteEnum;
 
   private destroyed$: Subject<void> = new Subject();
 
@@ -42,7 +44,7 @@ export class LoginComponent implements OnDestroy {
       .pipe(takeUntil(this.destroyed$))
       .subscribe(() => {
         this.form.reset();
-        this.router.navigate(['users']);
+        this.router.navigate([AppRouteEnum.Users]);
       });
     this.form.reset();
   }

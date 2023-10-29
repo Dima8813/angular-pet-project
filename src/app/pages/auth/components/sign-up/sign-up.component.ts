@@ -6,6 +6,7 @@ import { Subject, takeUntil, tap } from 'rxjs';
 
 import { AuthService } from '@shared/services';
 import { User } from '@core/interfaces';
+import { AppRouteEnum } from '@core/enums';
 
 @Component({
   selector: 'app-sign-up',
@@ -24,6 +25,7 @@ export class SignUpComponent implements OnDestroy {
     bio: [''],
     password: ['', [Validators.required, Validators.minLength(4)]],
   });
+  public readonly appRouteEnum = AppRouteEnum;
 
   private destroyed$: Subject<void> = new Subject();
 
@@ -43,7 +45,7 @@ export class SignUpComponent implements OnDestroy {
     this.authService
       .registration(formValue)
       .pipe(
-        tap(() => this.router.navigate(['login'])),
+        tap(() => this.router.navigate([AppRouteEnum.Login])),
         takeUntil(this.destroyed$)
       )
       .subscribe();

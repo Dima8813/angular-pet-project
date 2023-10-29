@@ -88,6 +88,8 @@
   <button class="btn" [disabled]="form.invalid || form.pending">Save</button>
   <p class="align-center m-0 fw-middle">
     Already have account?
-    <a class="auth-form__Link" routerLink="/login">Login now</a>
+    <a class="auth-form__Link" [routerLink]="'/' + appRouteEnum.Login"
+      >Login now</a
+    >
   </p>
 </form>

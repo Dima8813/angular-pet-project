@@ -1,1 +1,1 @@
-export * from './accessToken.interceptor';
+export * from './access-token.interceptor';

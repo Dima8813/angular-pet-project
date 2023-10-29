@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 @import 'styles/normalize';
 @import 'styles/animations';
 
@@ -99,6 +100,15 @@ input:-webkit-autofill {
     background-color: $bg-btn-disabled;
     border-color: $border-color-btn-disabled;
     color: $color-btn-disabled;
+  }
+  &.btn-white {
+    background-color: $white;
+    color: $turquoise;
+    font-weight: $font-weight-bold;
+    &:hover {
+      background-color: $turquoise;
+      color: $white;
+    }
   }
 }
 
