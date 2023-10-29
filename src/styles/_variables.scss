@@ -23,6 +23,7 @@ $color-base: $black;
 
 $color-link: $turquoise;
 
+$aside-width: 300px;
 $gap: 8px;
 $border-radius-base: 4px;
 
@@ -30,6 +31,11 @@ $link-color-base: $turquoise;
 
 // transition
 $transition-base: 0.4s;
+
+// navigation
+$color-link-nav: $gray;
+$color-link-nav-active: $white;
+$bg-link-nav-active: $turquoise;
 
 // Form
 $bg-color-field-form: $white;

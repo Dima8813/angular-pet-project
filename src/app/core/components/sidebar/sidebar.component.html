@@ -1,0 +1,9 @@
+<nav class="navigation">
+  <ul>
+    <li *ngFor="let route of routerLinks">
+      <a [routerLink]="route.path" [routerLinkActive]="route.activeClass">{{
+        route.name.charAt(0).toUpperCase() + route.name.slice(1)
+      }}</a>
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,25 @@
+@import 'variables';
+@import 'mixins';
+
+.navigation {
+  ul {
+    @include reset-list;
+    font-weight: $font-weight-middle;
+  }
+  li {
+    margin-bottom: $gap;
+  }
+  a {
+    color: $color-link-nav;
+    display: block;
+    border-radius: $border-radius-base * 2;
+    padding: $gap * 2;
+    transition: all $transition-base;
+    &.active,
+    &:hover {
+      background-color: $bg-link-nav-active;
+      color: $color-link-nav-active;
+      text-decoration: none;
+    }
+  }
+}

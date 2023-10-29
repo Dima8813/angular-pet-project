@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <aside>
+    <app-sidebar [routerLinks]="routerLinks"></app-sidebar>
+    <div class="aside-bottom-block">
+      <button class="btn btn-white" (click)="logout()">Logout</button>
+    </div>
+  </aside>
+  <main>
+    <div class="container">
+      <ng-content></ng-content>
+    </div>
+  </main>
+</div>

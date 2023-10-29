@@ -1,0 +1,12 @@
+@import 'variables';
+
+.page-header {
+  margin: $gap * 4 0 $gap * 2;
+  .page-header__title {
+    margin-bottom: $gap;
+  }
+  .page-header__sub-title {
+    color: $gray;
+    font-weight: $font-weight-middle;
+  }
+}
