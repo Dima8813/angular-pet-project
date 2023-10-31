@@ -33,6 +33,19 @@
         class="input-error">
         This is field is required
       </div>
+      <div
+        *ngIf="username.dirty && username.hasError('banWords')"
+        class="input-error">
+        The value
+        <strong>{{ username.getError('banWords')['banWord'] }}</strong> is
+        banned
+      </div>
+      <div
+        *ngIf="username.dirty && username.hasError('uniqueNickname')"
+        class="input-error">
+        This Nickname is already taken
+      </div>
+      <div *ngIf="username.pending" class="input-info">pending...</div>
     </ng-container>
   </div>
   <div class="form-field">
