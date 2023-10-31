@@ -1,12 +1,20 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { Subject, takeUntil, tap } from 'rxjs';
+import { bufferCount, filter, Subject, takeUntil, tap } from 'rxjs';
 
 import { AuthService } from '@shared/services';
+import { UniqueNicknameValidator } from '@core/validations/async-validators';
 import { User } from '@core/interfaces';
 import { AppRouteEnum } from '@core/enums';
+import { CustomValidator } from '@core/validations/custom-validators/custom.validators';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,10 +24,19 @@ import { AppRouteEnum } from '@core/enums';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignUpComponent implements OnDestroy {
+export class SignUpComponent implements OnInit, OnDestroy {
   public form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    username: ['', Validators.required],
+    username: [
+      '',
+      {
+        validators: [Validators.required, CustomValidator.banWords(['test'])],
+        asyncValidators: [
+          this.uniqueNickname.validate.bind(this.uniqueNickname),
+        ],
+        updateOn: 'blur',
+      },
+    ],
     name: [''],
     surname: [''],
     bio: [''],
@@ -32,8 +49,20 @@ export class SignUpComponent implements OnDestroy {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private uniqueNickname: UniqueNicknameValidator,
+    private cd: ChangeDetectorRef
   ) {}
+
+  public ngOnInit(): void {
+    this.form.statusChanges
+      .pipe(
+        bufferCount(2, 1),
+        filter(([prevState]) => prevState === 'PENDING'),
+        takeUntil(this.destroyed$)
+      )
+      .subscribe(() => this.cd.markForCheck());
+  }
 
   public ngOnDestroy(): void {
     this.destroyed$.next(null);
