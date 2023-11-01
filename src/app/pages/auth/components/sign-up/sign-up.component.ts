@@ -15,9 +15,7 @@ import { UniqueNicknameValidator } from '@core/validations/async-validators';
 import { User } from '@core/interfaces';
 import { AppRouteEnum } from '@core/enums';
 import { CustomValidator } from '@core/validations/custom-validators/custom.validators';
-
-import { DynamicValidatorMessageDirective } from '@shared/components/directives';
-import { OnTouchedErrorStateMatcher } from '@shared/components/input-error/error-statte-matcher.service';
+import { InputErrorComponent } from '@shared/components';
 
 @Component({
   selector: 'app-sign-up',
@@ -27,15 +25,12 @@ import { OnTouchedErrorStateMatcher } from '@shared/components/input-error/error
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    DynamicValidatorMessageDirective,
+    InputErrorComponent,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignUpComponent implements OnInit, OnDestroy {
-  public showErrorStrategy = new OnTouchedErrorStateMatcher();
-  public readonly appRouteEnum = AppRouteEnum;
-
   public form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     username: [
@@ -53,6 +48,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     bio: [''],
     password: ['', [Validators.required, Validators.minLength(4)]],
   });
+  public readonly appRouteEnum = AppRouteEnum;
 
   private destroyed$: Subject<void> = new Subject();
 

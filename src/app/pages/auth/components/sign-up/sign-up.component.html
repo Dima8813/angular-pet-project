@@ -1,4 +1,3 @@
-<!-- Form validation with showErrorStrategy -> OnTouchedErrorStateMatcher -->
 <form class="auth-form" [formGroup]="form" (ngSubmit)="onSubmit()">
   <h1>Registration</h1>
   <div class="form-field">
@@ -8,8 +7,12 @@
       id="email"
       type="text"
       placeholder="Email"
-      formControlName="email"
-      [errorStateMatcher]="showErrorStrategy" />
+      formControlName="email" />
+    <ng-container *ngIf="form.controls.email as email">
+      <app-input-error
+        *ngIf="email.dirty"
+        [errors]="email.errors"></app-input-error>
+    </ng-container>
   </div>
   <div class="form-field">
     <label class="form-field__label" for="email">Username</label>
@@ -18,9 +21,11 @@
       id="username"
       type="text"
       placeholder="Username"
-      formControlName="username"
-      [errorStateMatcher]="showErrorStrategy" />
+      formControlName="username" />
     <ng-container *ngIf="form.controls.username as username">
+      <app-input-error
+        *ngIf="username.dirty"
+        [errors]="username.errors"></app-input-error>
       <div *ngIf="username.pending" class="input-info">pending...</div>
     </ng-container>
   </div>
@@ -58,8 +63,12 @@
       id="password"
       type="password"
       placeholder="Password"
-      formControlName="password"
-      [errorStateMatcher]="showErrorStrategy" />
+      formControlName="password" />
+    <ng-container *ngIf="form.controls.password as password">
+      <app-input-error
+        *ngIf="password.dirty"
+        [errors]="password.errors"></app-input-error>
+    </ng-container>
   </div>
   <button class="btn" [disabled]="form.invalid || form.pending">Save</button>
   <p class="align-center m-0 fw-middle">
