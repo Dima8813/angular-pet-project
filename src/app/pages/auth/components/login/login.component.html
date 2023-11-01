@@ -1,3 +1,4 @@
+<!-- Form validation with showErrorStrategy -> ErrorStateMatcherService (dirty) -->
 <form class="auth-form" [formGroup]="form" (ngSubmit)="onSubmit()">
   <h1>Login</h1>
   <div class="form-field">
@@ -9,14 +10,9 @@
       placeholder="Email"
       formControlName="email" />
     <ng-container *ngIf="form.controls.email as email">
-      <div
-        *ngIf="email.dirty && email.hasError('required')"
-        class="input-error">
-        This is field is required
-      </div>
-      <div *ngIf="email.dirty && email.hasError('email')" class="input-error">
-        Email is not correct
-      </div>
+      <app-input-error
+        *ngIf="email.dirty"
+        [errors]="email.errors"></app-input-error>
     </ng-container>
   </div>
   <div class="form-field">
@@ -28,18 +24,9 @@
       placeholder="Password"
       formControlName="password" />
     <ng-container *ngIf="form.controls.password as password">
-      <div
-        *ngIf="password.dirty && password.hasError('required')"
-        class="input-error">
-        This is field is required
-      </div>
-      <div
-        *ngIf="password.dirty && password.hasError('minlength')"
-        class="input-error">
-        The field must be at least
-        <strong>{{ password.getError('minlength')['requiredLength'] }}</strong>
-        characters
-      </div>
+      <app-input-error
+        *ngIf="password.dirty"
+        [errors]="password.errors"></app-input-error>
     </ng-container>
   </div>
   <button class="btn" [disabled]="form.invalid || form.pending">Save</button>
