@@ -7,12 +7,18 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '@shared/services';
 import { User } from '@core/interfaces';
 import { AppRouteEnum } from '@core/enums';
+import { InputErrorComponent } from '@shared/components';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    InputErrorComponent,
+  ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

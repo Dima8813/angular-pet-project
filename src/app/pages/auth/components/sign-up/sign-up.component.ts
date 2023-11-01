@@ -15,12 +15,18 @@ import { UniqueNicknameValidator } from '@core/validations/async-validators';
 import { User } from '@core/interfaces';
 import { AppRouteEnum } from '@core/enums';
 import { CustomValidator } from '@core/validations/custom-validators/custom.validators';
+import { InputErrorComponent } from '@shared/components';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    InputErrorComponent,
+  ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

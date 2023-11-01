@@ -18,6 +18,15 @@
       "surname": "Kudriavtsev",
       "bio": "Frontend dev",
       "id": 2
+    },
+    {
+      "email": "nixs@srh.care",
+      "password": "$2a$10$VIF2XeVAHR/m4mxHK6aLauIHjzdXSIc/TBfQg6tDK4AQ5u2rDnLLS",
+      "username": "nixs@srh.care",
+      "name": "Dmitry",
+      "surname": "Kudriavtsev",
+      "bio": "awd",
+      "id": 3
     }
   ]
 }

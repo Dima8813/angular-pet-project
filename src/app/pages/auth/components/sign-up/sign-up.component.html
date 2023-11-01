@@ -9,14 +9,9 @@
       placeholder="Email"
       formControlName="email" />
     <ng-container *ngIf="form.controls.email as email">
-      <div
-        *ngIf="email.dirty && email.hasError('required')"
-        class="input-error">
-        This is field is required
-      </div>
-      <div *ngIf="email.dirty && email.hasError('email')" class="input-error">
-        Email is not correct
-      </div>
+      <app-input-error
+        *ngIf="email.dirty"
+        [errors]="email.errors"></app-input-error>
     </ng-container>
   </div>
   <div class="form-field">
@@ -28,23 +23,9 @@
       placeholder="Username"
       formControlName="username" />
     <ng-container *ngIf="form.controls.username as username">
-      <div
-        *ngIf="username.dirty && username.hasError('required')"
-        class="input-error">
-        This is field is required
-      </div>
-      <div
-        *ngIf="username.dirty && username.hasError('banWords')"
-        class="input-error">
-        The value
-        <strong>{{ username.getError('banWords')['banWord'] }}</strong> is
-        banned
-      </div>
-      <div
-        *ngIf="username.dirty && username.hasError('uniqueNickname')"
-        class="input-error">
-        This Nickname is already taken
-      </div>
+      <app-input-error
+        *ngIf="username.dirty"
+        [errors]="username.errors"></app-input-error>
       <div *ngIf="username.pending" class="input-info">pending...</div>
     </ng-container>
   </div>
@@ -84,18 +65,9 @@
       placeholder="Password"
       formControlName="password" />
     <ng-container *ngIf="form.controls.password as password">
-      <div
-        *ngIf="password.dirty && password.hasError('required')"
-        class="input-error">
-        This is field is required
-      </div>
-      <div
-        *ngIf="password.dirty && password.hasError('minlength')"
-        class="input-error">
-        The field must be at least
-        <strong>{{ password.getError('minlength')['requiredLength'] }}</strong>
-        characters
-      </div>
+      <app-input-error
+        *ngIf="password.dirty"
+        [errors]="password.errors"></app-input-error>
     </ng-container>
   </div>
   <button class="btn" [disabled]="form.invalid || form.pending">Save</button>

@@ -11,7 +11,7 @@ export class CustomValidator {
 
       return !foundBannedWorld
         ? null
-        : { banWords: { banWord: foundBannedWorld } };
+        : { banWords: { bannedWord: foundBannedWorld } };
     };
   }
 }
