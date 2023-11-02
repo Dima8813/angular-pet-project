@@ -1,0 +1,22 @@
+@import 'variables';
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.table-filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $gap * 2 0;
+}
+
+.table-filter__search {
+  max-width: 250px;
+  width: 100%;
+}
+
+.table-filter__action-btn {
+  position: relative;
+}

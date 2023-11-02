@@ -1,0 +1,31 @@
+@import 'mixins';
+@import 'variables';
+
+:host-context(.hidden) {
+  display: none;
+}
+
+:host {
+  position: absolute;
+  top: 46px;
+  right: 0;
+  width: 210px;
+  background-color: $white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: $gap;
+  z-index: 20;
+  ul {
+    @include reset-list;
+  }
+  a {
+    display: block;
+    padding: $gap;
+    color: #000;
+    transition: all $transition-base;
+    &:hover {
+      text-decoration: none;
+      color: $turquoise;
+    }
+  }
+}

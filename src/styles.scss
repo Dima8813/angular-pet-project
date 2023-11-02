@@ -97,7 +97,7 @@ input:-webkit-autofill {
   border: 2px solid $bg-btn;
   color: $color-btn;
   font-weight: $font-weight-btn;
-  padding: $gap;
+  padding: calc($gap - 1px) $gap;
   cursor: pointer;
   transition: all $transition-base;
   &:hover {
