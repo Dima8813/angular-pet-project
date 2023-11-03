@@ -1,0 +1,12 @@
+<div class="dropdown" [ngClass]="extendClass">
+  <div
+    class="dropdown__toggle"
+    (click)="toggleMenu()"
+    (appClickOutside)="clickedOutside()">
+    {{ toggleBtnText }}
+    <fa-icon class="icon" [icon]="isMenuOpened ? iconUp : iconDown"></fa-icon>
+  </div>
+  <div class="dropdown__menu" *ngIf="isMenuOpened">
+    <a class="dropdown__menu--item" *ngFor="let item of items">{{ item }}</a>
+  </div>
+</div>

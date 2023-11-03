@@ -48,8 +48,7 @@ select {
 }
 input:not([type='checkbox']),
 input:not([type='radio']),
-fieldset,
-button {
+fieldset {
   width: 100%;
   padding: $gap;
   background-color: $bg-color-field-form;
@@ -97,7 +96,7 @@ input:-webkit-autofill {
   border: 2px solid $bg-btn;
   color: $color-btn;
   font-weight: $font-weight-btn;
-  padding: $gap;
+  padding: calc($gap - 1px) $gap;
   cursor: pointer;
   transition: all $transition-base;
   &:hover {
@@ -126,6 +125,10 @@ input:-webkit-autofill {
 
 .m-0 {
   margin: 0;
+}
+
+.w-100 {
+  width: 100%;
 }
 
 .fw-middle {

@@ -1,0 +1,42 @@
+@import 'variables';
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.table-filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $gap * 2 0;
+}
+
+.table-filter__search {
+  max-width: 250px;
+  width: 100%;
+  position: relative;
+}
+
+.field-search {
+  padding-right: 35px;
+}
+
+.btn-search {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: $gray;
+  width: 35px;
+  height: 35px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all $transition-base;
+  &:hover {
+    opacity: 0.8;
+  }
+}
