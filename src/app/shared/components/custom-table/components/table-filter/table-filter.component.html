@@ -1,17 +1,17 @@
 <form class="table-filter">
   <div class="table-filter__search">
     <input
+      class="field-search"
       name="search"
       type="text"
       placeholder="Email"
       formControlName="search" />
+    <button class="btn-search">
+      <fa-icon [icon]="iconSearch"></fa-icon>
+    </button>
   </div>
-  <div class="table-filter__action-btn">
-    <div class="btn btn-white" (click)="dropdownMenu.show()">
-      Multi items action
-    </div>
-    <app-dropdown-menu
-      [items]="['Active', 'Inactive']"
-      #dropdownMenu></app-dropdown-menu>
-  </div>
+  <app-dropdown-menu
+    [extendClass]="'dropdown-menu-filter'"
+    [toggleBtnText]="'Multi items action'"
+    [items]="['Active', 'Inactive']"></app-dropdown-menu>
 </form>

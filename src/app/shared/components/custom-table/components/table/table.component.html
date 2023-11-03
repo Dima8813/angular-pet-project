@@ -19,7 +19,9 @@
       <td class="center" data-label="Status">
         <span class="badge active">Active</span>
       </td>
-      <td class="center" data-label="Action">Action</td>
+      <td class="center" data-label="Action">
+        <app-dropdown-menu [items]="['Active', 'Inactive']"></app-dropdown-menu>
+      </td>
     </tr>
     <tr class="active">
       <td data-label="User Name">dima@gmail.com</td>
@@ -29,7 +31,9 @@
       <td class="center" data-label="Status">
         <span class="badge">Inactive</span>
       </td>
-      <td class="center" data-label="Action">Action</td>
+      <td class="center" data-label="Action">
+        <app-dropdown-menu [items]="['Active', 'Inactive']"></app-dropdown-menu>
+      </td>
     </tr>
     <tr>
       <td data-label="User Name">dima@gmail.com</td>
@@ -39,7 +43,9 @@
       <td class="center" data-label="Status">
         <span class="badge">Inactive</span>
       </td>
-      <td class="center" data-label="Action">Action</td>
+      <td class="center" data-label="Action">
+        <app-dropdown-menu [items]="['Active', 'Inactive']"></app-dropdown-menu>
+      </td>
     </tr>
   </tbody>
 </table>

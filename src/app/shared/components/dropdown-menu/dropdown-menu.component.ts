@@ -1,10 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  HostListener,
-  Input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { IconDefinition } from '@fortawesome/fontawesome-common-types';
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dropdown-menu',
@@ -14,25 +10,18 @@ import {
 })
 export class DropdownMenuComponent {
   @Input() public items: string[] = [];
-  @HostBinding('class') private hostClass = 'hidden';
-  private skipClick = false;
+  @Input() public toggleBtnText: string = 'Action';
+  @Input() public extendClass: string;
 
-  @HostListener('click', ['$event'])
-  private hostClick(event: Event): void {
-    event.stopPropagation();
+  public isMenuOpened: boolean;
+  public iconDown: IconDefinition = faAngleDown;
+  public iconUp: IconDefinition = faAngleUp;
+
+  public toggleMenu(): void {
+    this.isMenuOpened = !this.isMenuOpened;
   }
 
-  @HostListener('window:click')
-  private hide(): void {
-    if (this.skipClick) {
-      this.skipClick = false;
-      return;
-    }
-    this.hostClass = 'hidden';
-  }
-
-  public show(): void {
-    this.hostClass = '';
-    this.skipClick = true;
+  public clickedOutside(): void {
+    this.isMenuOpened = false;
   }
 }
