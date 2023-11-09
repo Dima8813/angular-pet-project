@@ -3,3 +3,8 @@
   padding: 0;
   list-style: none;
 }
+
+@mixin background-opacity($color, $opacity: 0.1) {
+  background: $color;
+  background: rgba($color, $opacity);
+}

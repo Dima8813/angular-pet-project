@@ -5,6 +5,37 @@
   </app-page-header>
 
   <app-card>
-    <app-custom-table></app-custom-table>
+    <app-custom-table
+      matSort
+      #userTable
+      [hidden]="!loading"
+      [dataSource]="dataSource"
+      [columnAdd]="columns"
+      [displayedColumns]="displayedColumns">
+      <!-- TODO: Remove comment -->
+      <!--(matSortChange)="sortChange($event)"-->
+      <ng-container matColumnDef="status">
+        <th
+          mat-header-cell
+          mat-sort-header
+          *matHeaderCellDef
+          [ngClass]="'center'">
+          Status
+        </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="'center'">
+          <span class="badge" [ngClass]="element.status">{{
+            element.status === 'active' ? 'Active' : 'Inactive'
+          }}</span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef [ngClass]="'center'">Actions</th>
+        <td mat-cell *matCellDef="let row" [ngClass]="'center'">
+          <app-dropdown-menu
+            [items]="['Active', 'Inactive']"></app-dropdown-menu>
+        </td>
+      </ng-container>
+    </app-custom-table>
   </app-card>
 </app-page-layout>
