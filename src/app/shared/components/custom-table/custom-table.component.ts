@@ -40,14 +40,15 @@ export class CustomTableComponent implements AfterViewInit {
   public ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
 
-    this.displayedColumnsFiltered = this.displayedColumns
-      .filter(
-        (column: GridColumn) =>
-          !this.columnDefs.some(
-            (columnDef: MatColumnDef) => column.field === columnDef.name
-          )
-      )
-      .map((column: GridColumn) => column.field);
+    this.displayedColumns = this.displayedColumns.filter(
+      (column: GridColumn) =>
+        !this.columnDefs.some(
+          (columnDef: MatColumnDef) => column.field === columnDef.name
+        )
+    );
+    this.displayedColumnsFiltered = this.displayedColumns.map(
+      (column: GridColumn) => column.field
+    );
 
     setTimeout(() => {
       this.columnAdd.forEach((x: MatColumnDef) => {

@@ -5,7 +5,6 @@ import {
   Component,
   OnInit,
   QueryList,
-  ViewChild,
   ViewChildren,
 } from '@angular/core';
 import { PageLayoutComponent } from '@core/components';
@@ -71,12 +70,17 @@ export class UsersComponent implements OnInit, AfterViewInit {
       sortable: true,
       align: 'center',
     },
+    {
+      field: 'status',
+      header: 'Status',
+      sortable: false,
+      align: 'center',
+    },
   ];
   public dataSource = new MatTableDataSource(ELEMENT_DATA);
   public loading: boolean;
 
   @ViewChildren(MatColumnDef) columns!: QueryList<MatColumnDef>;
-  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private readonly cd: ChangeDetectorRef) {}
 
