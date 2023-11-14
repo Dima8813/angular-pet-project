@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CustomTableComponent } from './custom-table.component';
@@ -16,7 +17,13 @@ import { ClickOutsideDirective } from '../../directives';
     DropdownMenuComponent,
     ClickOutsideDirective,
   ],
-  imports: [CommonModule, FontAwesomeModule, MatTableModule, MatSortModule],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    MatTableModule,
+    MatSortModule,
+    FormsModule,
+  ],
   exports: [
     CommonModule,
     CustomTableComponent,

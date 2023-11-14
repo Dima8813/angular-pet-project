@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { RouterLinks } from '../../static-data/router-links.data';
+import { RouterLinks } from '../../static-data';
 import { AuthService } from '@shared/services';
 
 @Component({

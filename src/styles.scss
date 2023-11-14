@@ -100,6 +100,7 @@ input:-webkit-autofill {
   padding: calc($gap - 1px) $gap;
   cursor: pointer;
   transition: all $transition-base;
+  display: inline-block;
   &:hover {
     background-color: transparent;
     color: $color-btn-hover;
@@ -116,6 +117,7 @@ input:-webkit-autofill {
     &:hover {
       background-color: $turquoise;
       color: $white;
+      text-decoration: none;
     }
   }
 }

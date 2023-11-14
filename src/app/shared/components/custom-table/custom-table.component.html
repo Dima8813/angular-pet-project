@@ -1,4 +1,7 @@
-<app-table-filter></app-table-filter>
+<app-table-filter
+  *ngIf="tableFilter"
+  (filterValue)="applyFilter($event)"></app-table-filter>
+
 <div class="custom-table">
   <table
     [ngClass]="'w-100'"
@@ -29,7 +32,6 @@
           {{ col.header }}
         </th>
       </ng-template>
-
       <td
         mat-cell
         [ngClass]="col.align"

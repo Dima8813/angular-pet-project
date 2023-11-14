@@ -15,10 +15,11 @@ import {
   MatTableDataSource,
   MatTableModule,
 } from '@angular/material/table';
-import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatSortModule } from '@angular/material/sort';
 
 import { GridColumn } from '@shared/components/custom-table/interfaces';
 import { CustomTableModule } from '@shared/components/custom-table/custom-table.module';
+import { Status } from './enums';
 
 // Todo: temp mock data
 const ELEMENT_DATA: any[] = [
@@ -61,24 +62,26 @@ export class UsersComponent implements OnInit, AfterViewInit {
     {
       field: 'weight',
       header: 'Weight',
-      sortable: true,
       align: 'center',
+      sortable: true,
     },
     {
       field: 'symbol',
       header: 'Symbol',
-      sortable: true,
       align: 'center',
+      sortable: true,
+      filtered: true,
     },
     {
       field: 'status',
       header: 'Status',
-      sortable: false,
       align: 'center',
+      sortable: false,
     },
   ];
   public dataSource = new MatTableDataSource(ELEMENT_DATA);
   public loading: boolean;
+  public readonly status = Status;
 
   @ViewChildren(MatColumnDef) columns!: QueryList<MatColumnDef>;
 

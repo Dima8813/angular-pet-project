@@ -9,12 +9,13 @@
       [hidden]="!loading"
       [dataSource]="dataSource"
       [columnAdd]="columns"
-      [displayedColumns]="displayedColumns">
+      [displayedColumns]="displayedColumns"
+      [tableFilter]="true">
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef [ngClass]="'center'">Status</th>
         <td mat-cell *matCellDef="let row" [ngClass]="'center'">
           <span class="badge" [ngClass]="row.status">{{
-            row.status === 'active' ? 'Active' : 'Inactive'
+            row.status === status.Active ? 'Active' : 'Inactive'
           }}</span>
         </td>
       </ng-container>
@@ -22,8 +23,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef [ngClass]="'center'">Actions</th>
         <td mat-cell *matCellDef="let row" [ngClass]="'center'">
-          <app-dropdown-menu
-            [items]="['Active', 'Inactive']"></app-dropdown-menu>
+          <app-dropdown-menu></app-dropdown-menu>
         </td>
       </ng-container>
     </app-custom-table>
