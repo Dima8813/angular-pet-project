@@ -1,0 +1,21 @@
+@import 'variables';
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.not-found-content {
+  text-align: center;
+  strong {
+    font-size: 6rem;
+  }
+  h3 {
+    margin-bottom: $gap;
+    color: $gray;
+    margin-bottom: $gap * 4;
+  }
+}

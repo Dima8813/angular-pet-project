@@ -37,6 +37,6 @@
   cursor: pointer;
   transition: all $transition-base;
   &:hover {
-    opacity: 0.8;
+    color: $turquoise;
   }
 }

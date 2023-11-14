@@ -32,6 +32,14 @@ const routes: Routes = [
     loadComponent: () =>
       import('@pages/clinics/clinics.component').then(m => m.ClinicsComponent),
   },
+  {
+    path: '**',
+    canActivate: [AuthGuard],
+    loadComponent: () =>
+      import('@pages/not-found/not-found.component').then(
+        m => m.NotFoundComponent
+      ),
+  },
 ];
 
 @NgModule({

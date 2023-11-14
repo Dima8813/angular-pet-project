@@ -2,6 +2,7 @@
 @import 'mixins';
 @import 'styles/normalize';
 @import 'styles/animations';
+@import 'components/table';
 
 * {
   box-sizing: border-box;
@@ -99,6 +100,7 @@ input:-webkit-autofill {
   padding: calc($gap - 1px) $gap;
   cursor: pointer;
   transition: all $transition-base;
+  display: inline-block;
   &:hover {
     background-color: transparent;
     color: $color-btn-hover;
@@ -115,6 +117,7 @@ input:-webkit-autofill {
     &:hover {
       background-color: $turquoise;
       color: $white;
+      text-decoration: none;
     }
   }
 }
@@ -148,4 +151,19 @@ input:-webkit-autofill {
 
 .auth-form__Link {
   font-weight: $font-weight-middle;
+}
+
+.badge {
+  @include background-opacity($gray);
+  color: $gray;
+  padding: $gap / 2 $gap * 2;
+  border-radius: $border-radius-base * 2;
+  max-width: 100px;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  &.active {
+    @include background-opacity($green);
+    color: $green;
+  }
 }
