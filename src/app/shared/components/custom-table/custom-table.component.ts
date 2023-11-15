@@ -5,6 +5,8 @@ import {
   Component,
   ContentChildren,
   Input,
+  OnDestroy,
+  OnInit,
   QueryList,
   ViewChild,
 } from '@angular/core';
@@ -13,7 +15,10 @@ import {
   MatTable,
   MatTableDataSource,
 } from '@angular/material/table';
+import { Subject, takeUntil } from 'rxjs';
 import { MatSort } from '@angular/material/sort';
+import { FormControl } from '@angular/forms';
+
 import { GridColumn } from './interfaces';
 
 @Component({
@@ -22,23 +27,46 @@ import { GridColumn } from './interfaces';
   styleUrls: ['./custom-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CustomTableComponent implements AfterViewInit {
+export class CustomTableComponent<T>
+  implements OnInit, AfterViewInit, OnDestroy
+{
   @Input() displayedColumns: GridColumn[] = [];
-  @Input() dataSource: MatTableDataSource<any>;
+  @Input() dataSource: MatTableDataSource<T>;
   @Input() columnAdd: QueryList<MatColumnDef>;
   @Input() tableFilter: boolean;
+  @Input() filteredFormControls: { [key: string]: FormControl };
 
   @ViewChild(MatSort) public sort: MatSort;
   @ViewChild(MatTable) public table: MatTable<any>;
   @ContentChildren(MatColumnDef) public columnDefs: QueryList<MatColumnDef>;
 
-  public displayedColumnsFiltered: string[] = [];
   public globalFilter = '';
+  public displayedColumnsFiltered: string[] = [];
+  public filteredValues: { [key: string]: string } = {};
+
+  private destroyed$: Subject<void> = new Subject();
 
   constructor(private readonly cd: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
+    Object.keys(this.filteredFormControls).forEach((property: string) => {
+      this.filteredValues[property] = '';
+    });
+
+    for (let key in this.filteredValues) {
+      this.filteredFormControls[key].valueChanges
+        .pipe(takeUntil(this.destroyed$))
+        .subscribe((statusFilterValue: string) => {
+          this.filteredValues[key] = statusFilterValue;
+          this.dataSource.filter = JSON.stringify(this.filteredValues);
+        });
+    }
     this.dataSource.filterPredicate = this.customFilterPredicate();
+  }
+
+  public ngOnDestroy(): void {
+    this.destroyed$.next(null);
+    this.destroyed$.complete();
   }
 
   public ngAfterViewInit(): void {
@@ -64,18 +92,11 @@ export class CustomTableComponent implements AfterViewInit {
   }
 
   public applyFilter(filter: string): void {
-    // Todo: temp code for filter inside the column
-    // const filteredValues: {[key: string]: string} = {};
-    // this.displayedColumnsFiltered.forEach((property: string) => {
-    //   filteredValues[property] = '';
-    // });
-    //this.dataSource.filter = JSON.stringify(filteredValues);
-
     this.globalFilter = filter;
-    this.dataSource.filter = filter.trim().toLowerCase();
+    this.dataSource.filter = JSON.stringify(this.filteredValues);
   }
 
-  private customFilterPredicate(): (a: any, b: string) => boolean {
+  private customFilterPredicate(): (a: any, b: any) => boolean {
     const myFilterPredicate = (data: any, filter: string): boolean => {
       let globalMatch = !this.globalFilter;
 
@@ -86,7 +107,7 @@ export class CustomTableComponent implements AfterViewInit {
               .toString()
               .trim()
               .toLowerCase()
-              .indexOf(this.globalFilter.toLowerCase().toLowerCase()) !== -1
+              .indexOf(this.globalFilter.toLowerCase()) !== -1
         );
       }
 
@@ -94,24 +115,33 @@ export class CustomTableComponent implements AfterViewInit {
         return false;
       }
 
-      // Todo: temp code for filter inside the column
-      return true;
-      // let searchString = JSON.parse(filter);
-      // return (
-      //   data.position.toString().trim().indexOf(searchString.position) !== -1 &&
-      //   data.position
-      //     .toString()
-      //     .trim()
-      //     .toLowerCase()
-      //     .indexOf(searchString.position.toLowerCase()) !== -1
-      // );
+      let searchString = JSON.parse(filter);
+      return this.isMatch(data, searchString);
     };
     return myFilterPredicate;
+  }
+
+  private isMatch(data: any, searchString: { [key: string]: string }) {
+    for (const key in searchString) {
+      const searchData = data[key];
+      if (
+        searchData &&
+        searchData
+          .toString()
+          .trim()
+          .toLowerCase()
+          .indexOf(searchString[key].toLowerCase()) === -1
+      ) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   private get listColumnsFiltering(): string[] {
     return this.displayedColumns
       .filter((column: GridColumn) => column.filtered)
-      .map(column => column.field);
+      .map((column: GridColumn) => column.field as keyof typeof column);
   }
 }

@@ -7,8 +7,6 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core';
-import { PageLayoutComponent } from '@core/components';
-import { CardComponent, PageHeaderComponent } from '@shared/components';
 import { CommonModule } from '@angular/common';
 import {
   MatColumnDef,
@@ -16,24 +14,15 @@ import {
   MatTableModule,
 } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
-import { GridColumn } from '@shared/components/custom-table/interfaces';
+import { PageLayoutComponent } from '@core/components';
 import { CustomTableModule } from '@shared/components/custom-table/custom-table.module';
+import { GridColumn } from '@shared/components/custom-table/interfaces';
+import { CardComponent, PageHeaderComponent } from '@shared/components';
+import { userGridColumns, userGridData } from './static-data';
 import { Status } from './enums';
-
-// Todo: temp mock data
-const ELEMENT_DATA: any[] = [
-  { status: 'active', position: 1, weight: 1.0079, symbol: 'H' },
-  { status: 'inactive', position: 2, weight: 4.0026, symbol: 'He' },
-  { status: 'inactive', position: 3, weight: 6.941, symbol: 'Li' },
-  { status: 'inactive', position: 4, weight: 9.0122, symbol: 'Be' },
-  { status: 'inactive', position: 5, weight: 10.811, symbol: 'B' },
-  { status: 'inactive', position: 6, weight: 12.0107, symbol: 'C' },
-  { status: 'inactive', position: 7, weight: 14.0067, symbol: 'N' },
-  { status: 'inactive', position: 8, weight: 15.9994, symbol: 'O' },
-  { status: 'inactive', position: 9, weight: 18.9984, symbol: 'F' },
-  { status: 'inactive', position: 10, weight: 20.1797, symbol: 'Ne' },
-];
+import { UserTable } from './intrfaces';
 
 @Component({
   selector: 'app-users',
@@ -47,43 +36,23 @@ const ELEMENT_DATA: any[] = [
     CustomTableModule,
     MatTableModule,
     MatSortModule,
+    ReactiveFormsModule,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersComponent implements OnInit, AfterViewInit {
-  displayedColumns: GridColumn[] = [
-    {
-      field: 'position',
-      header: 'Position',
-      width: 20,
-      sortable: true,
-    },
-    {
-      field: 'weight',
-      header: 'Weight',
-      align: 'center',
-      sortable: true,
-    },
-    {
-      field: 'symbol',
-      header: 'Symbol',
-      align: 'center',
-      sortable: true,
-      filtered: true,
-    },
-    {
-      field: 'status',
-      header: 'Status',
-      align: 'center',
-      sortable: false,
-    },
-  ];
-  public dataSource = new MatTableDataSource(ELEMENT_DATA);
-  public loading: boolean;
-  public readonly status = Status;
-
   @ViewChildren(MatColumnDef) columns!: QueryList<MatColumnDef>;
+
+  public displayedColumns: GridColumn[] = userGridColumns;
+  public dataSource = new MatTableDataSource<UserTable>(userGridData);
+  public loading: boolean;
+  public filteredFormControls: { [key: string]: FormControl } = {
+    status: new FormControl(),
+    position: new FormControl(),
+  };
+
+  public readonly status = Status;
 
   constructor(private readonly cd: ChangeDetectorRef) {}
 
