@@ -7,8 +7,10 @@
     <fa-icon class="icon" [icon]="isMenuOpened ? iconUp : iconDown"></fa-icon>
   </div>
   <div class="dropdown__menu" *ngIf="isMenuOpened">
-    <a class="dropdown__menu--item" *ngFor="let item of actionItems">{{
-      item
-    }}</a>
+    <a
+      class="dropdown__menu--item"
+      (click)="handleActionClick(item)"
+      *ngFor="let item of actionItems"
+      >{{ item }}</a>
   </div>
 </div>

@@ -1,0 +1,34 @@
+<div class="modal-container">
+  <div *ngIf="data.hostSettings?.showHeader">
+    <h4 class="modal-title">{{ data.hostSettings?.title }}</h4>
+  </div>
+
+  <button
+    class="btn-close"
+    *ngIf="data.hostSettings?.showCloseIcon"
+    (click)="cancelClick()">
+    <fa-icon [icon]="iconTimes"></fa-icon>
+  </button>
+
+  <ng-container #content></ng-container>
+
+  <div class="button-wrapper">
+    <button
+      class="btn btn-large"
+      *ngIf="data.hostSettings?.confirmBtnText"
+      (click)="confirm()"
+      [disabled]="isDisable$ | async">
+      {{ data.hostSettings?.confirmBtnText }}
+    </button>
+    <button
+      class="btn btn-white btn-large"
+      *ngIf="data.hostSettings?.showCancelBtn && (isLoading$ | async) !== true"
+      (click)="cancelClick()">
+      {{
+        data.hostSettings?.cancelBtnText
+          ? data.hostSettings?.cancelBtnText
+          : 'Cancel'
+      }}
+    </button>
+  </div>
+</div>

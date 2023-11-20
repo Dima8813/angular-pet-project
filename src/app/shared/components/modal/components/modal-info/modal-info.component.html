@@ -1,0 +1,19 @@
+<div class="info-modal mb-20">
+  <ng-container [ngSwitch]="payload.type">
+    <ul class="info-modal__list" *ngSwitchCase="infoModalContentType.LIST">
+      <li class="info-modal__list-item" *ngFor="let item of payload.list">
+        {{ item }}
+      </li>
+    </ul>
+
+    <div class="info-modal__link" *ngSwitchCase="infoModalContentType.LINK">
+      <a [href]="payload.text" target="_blank" rel="noopener noreferrer">{{
+        payload.text
+      }}</a>
+    </div>
+
+    <ng-container *ngSwitchDefault>
+      <p>{{ payload.text }}</p>
+    </ng-container>
+  </ng-container>
+</div>

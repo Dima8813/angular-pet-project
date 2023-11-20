@@ -20,9 +20,9 @@ import { PageLayoutComponent } from '@core/components';
 import { CustomTableModule } from '@shared/components/custom-table/custom-table.module';
 import { GridColumn } from '@shared/components/custom-table/interfaces';
 import { CardComponent, PageHeaderComponent } from '@shared/components';
+import { Status } from '@shared/components/custom-table/enums';
 import { userGridColumns, userGridData } from './static-data';
-import { Status } from './enums';
-import { UserTable } from './intrfaces';
+import { UserTable } from './interfaces';
 
 @Component({
   selector: 'app-users',
@@ -56,7 +56,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
   constructor(private readonly cd: ChangeDetectorRef) {}
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     setTimeout(() => {
       this.loading = true;
       this.cd.markForCheck();

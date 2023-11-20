@@ -1,0 +1,33 @@
+@import 'variables';
+
+.modal-container {
+  position: relative;
+
+  .btn-close {
+    position: absolute;
+    top: -24px;
+    right: -24px;
+    background-color: $light-gray;
+    border-style: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 24px;
+    transition: all $transition-base;
+    &:hover {
+      background-color: $gray;
+      color: #fff;
+    }
+  }
+
+  .modal-title {
+    margin-bottom: $gap * 3;
+  }
+}
+
+.button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
