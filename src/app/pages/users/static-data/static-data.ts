@@ -1,6 +1,6 @@
 import { GridColumn } from '@shared/components/custom-table/interfaces';
-import { UserTable } from '../intrfaces';
-import { Status } from '../enums';
+import { UserTable } from '../interfaces';
+import { Status } from '@shared/components/custom-table/enums';
 
 export const userGridColumns: GridColumn[] = [
   {

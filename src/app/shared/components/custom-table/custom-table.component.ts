@@ -34,7 +34,7 @@ export class CustomTableComponent<T>
   @Input() dataSource: MatTableDataSource<T>;
   @Input() columnAdd: QueryList<MatColumnDef>;
   @Input() tableFilter: boolean;
-  @Input() filteredFormControls: { [key: string]: FormControl };
+  @Input() filteredFormControls!: { [key: string]: FormControl };
 
   @ViewChild(MatSort) public sort: MatSort;
   @ViewChild(MatTable) public table: MatTable<any>;
@@ -49,17 +49,19 @@ export class CustomTableComponent<T>
   constructor(private readonly cd: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
-    Object.keys(this.filteredFormControls).forEach((property: string) => {
-      this.filteredValues[property] = '';
-    });
+    if (!!this.filteredFormControls) {
+      Object.keys(this.filteredFormControls).forEach((property: string) => {
+        this.filteredValues[property] = '';
+      });
 
-    for (let key in this.filteredValues) {
-      this.filteredFormControls[key].valueChanges
-        .pipe(takeUntil(this.destroyed$))
-        .subscribe((statusFilterValue: string) => {
-          this.filteredValues[key] = statusFilterValue;
-          this.dataSource.filter = JSON.stringify(this.filteredValues);
-        });
+      for (let key in this.filteredValues) {
+        this.filteredFormControls[key].valueChanges
+          .pipe(takeUntil(this.destroyed$))
+          .subscribe((statusFilterValue: string) => {
+            this.filteredValues[key] = statusFilterValue;
+            this.dataSource.filter = JSON.stringify(this.filteredValues);
+          });
+      }
     }
     this.dataSource.filterPredicate = this.customFilterPredicate();
   }

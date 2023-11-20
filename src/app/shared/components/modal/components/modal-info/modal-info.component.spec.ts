@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomTableComponent } from './custom-table.component';
+import { ModalInfoComponent } from './modal-info.component';
 
-describe('CustomTableComponent', () => {
-  let component: CustomTableComponent<any>;
-  let fixture: ComponentFixture<CustomTableComponent<any>>;
+describe('ModalInfoComponent', () => {
+  let component: ModalInfoComponent;
+  let fixture: ComponentFixture<ModalInfoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CustomTableComponent],
+      declarations: [ModalInfoComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CustomTableComponent);
+    fixture = TestBed.createComponent(ModalInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

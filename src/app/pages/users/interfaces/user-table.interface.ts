@@ -1,4 +1,4 @@
-import { Status } from '../enums';
+import { Status } from '@shared/components/custom-table/enums';
 
 export interface UserTable {
   status: Status;

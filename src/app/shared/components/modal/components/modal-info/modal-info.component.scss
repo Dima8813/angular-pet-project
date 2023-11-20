@@ -1,0 +1,15 @@
+.info-modal {
+  &__list {
+    padding-left: 20px;
+
+    &-item {
+      list-style: disc;
+    }
+  }
+
+  &__link {
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}
