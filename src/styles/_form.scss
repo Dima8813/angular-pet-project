@@ -1,0 +1,98 @@
+input,
+button,
+select {
+  font-size: 1rem;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px $bg-color-field-form inset;
+}
+
+input:not([type='checkbox']):not([type='radio']) {
+  width: 100%;
+  padding: $gap;
+  background-color: $bg-color-field-form;
+  border-radius: $border-radius-base;
+  border: 2px solid $border-field-form;
+  &:focus {
+    outline: none;
+  }
+}
+
+input[type='checkbox'] {
+  position: relative;
+  border: 2px solid $border-field-form;
+  border-radius: 2px;
+  background: none;
+  cursor: pointer;
+  line-height: 0;
+  margin: 0 $gap 0 0;
+  height: 20px;
+  width: 20px;
+  -webkit-appearance: none;
+  &:checked {
+    border: 2px solid $border-field-form-valid;
+    background-color: $border-field-form-valid;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    width: 4px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    margin: -1px -1px 0 -1px;
+    transform: rotate(45deg) translate(-50%, -50%);
+    z-index: 2;
+  }
+}
+
+.form-field__label {
+  font-weight: $font-weight-middle;
+  white-space: nowrap;
+}
+
+.form-field-inline-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: $gap * 2;
+  &--small {
+    max-width: 48%;
+  }
+
+  &.checkbox {
+    display: flex;
+  }
+}
+
+.input-error {
+  color: #e63131;
+  font-size: 0.75rem;
+  padding: $gap;
+  animation-name: input-message-animation;
+  animation-duration: 300ms;
+}
+
+.input-info {
+  font-size: 0.75rem;
+  padding: $gap;
+  animation-name: input-message-animation;
+  animation-duration: 300ms;
+  color: #3155e6;
+}
+
+.ng-valid.ng-dirty:not([formGroupName]):not([formArrayName]):not(
+    [ngModelGroup]
+  ):not(form)input:not([type='checkbox']) {
+  border-color: $border-field-form-valid;
+}
+
+.ng-invalid.ng-dirty:not([formArrayName]):not(form) {
+  border-color: $border-field-form-invalid;
+}

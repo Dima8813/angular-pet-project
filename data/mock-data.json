@@ -28,5 +28,35 @@
       "bio": "awd",
       "id": 3
     }
+  ],
+  "clinics": [
+    {
+      "name": "Andalusia Health",
+      "code": "pdf123456",
+      "address": "Andalusia, Covington",
+      "status": "active",
+      "id": 1
+    },
+    {
+      "name": "Athens-Limestone Hospital",
+      "code": "pdf234567",
+      "address": "Athens, Limestone",
+      "status": "active",
+      "id": 2
+    },
+    {
+      "name": "Atmore Community Hospital",
+      "code": "pdf345678",
+      "address": "Atmore, Escambia",
+      "status": "active",
+      "id": 3
+    },
+    {
+      "name": "Brookwood Baptist Medical Center",
+      "code": "pdf678901",
+      "address": "Homewood, Jefferson",
+      "status": "active",
+      "id": 4
+    }
   ]
 }

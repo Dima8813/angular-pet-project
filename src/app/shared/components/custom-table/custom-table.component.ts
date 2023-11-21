@@ -4,9 +4,11 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChildren,
+  EventEmitter,
   Input,
   OnDestroy,
   OnInit,
+  Output,
   QueryList,
   ViewChild,
 } from '@angular/core';
@@ -35,6 +37,10 @@ export class CustomTableComponent<T>
   @Input() columnAdd: QueryList<MatColumnDef>;
   @Input() tableFilter: boolean;
   @Input() filteredFormControls!: { [key: string]: FormControl };
+
+  @Input() confirmBtnText: string;
+
+  @Output() public addNewRow = new EventEmitter<unknown>();
 
   @ViewChild(MatSort) public sort: MatSort;
   @ViewChild(MatTable) public table: MatTable<any>;

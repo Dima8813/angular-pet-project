@@ -1,6 +1,9 @@
 <app-table-filter
   *ngIf="tableFilter"
-  (filterValue)="applyFilter($event)"></app-table-filter>
+  [confirmBtnText]="confirmBtnText"
+  (filterValue)="applyFilter($event)"
+  (addNewRow)="addNewRow.emit()">
+</app-table-filter>
 
 <div class="custom-table">
   <table

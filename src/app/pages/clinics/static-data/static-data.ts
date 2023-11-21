@@ -1,6 +1,5 @@
 import { GridColumn } from '@shared/components/custom-table/interfaces';
 import { Status } from '@shared/components/custom-table/enums';
-import { ClinicTable } from '../interfaces';
 
 export const clinicGridColumns: GridColumn[] = [
   {
@@ -11,6 +10,7 @@ export const clinicGridColumns: GridColumn[] = [
     field: 'name',
     header: 'Clinic name',
     align: 'center',
+    sortable: true,
   },
   {
     field: 'address',
@@ -21,15 +21,5 @@ export const clinicGridColumns: GridColumn[] = [
     field: 'status',
     header: 'Status',
     align: 'center',
-  },
-];
-
-export const clinicGridData: ClinicTable[] = [
-  {
-    id: '1',
-    code: 'pdf908712',
-    name: 'Test Clinic',
-    address: 'Test Address',
-    status: Status.Active,
   },
 ];
