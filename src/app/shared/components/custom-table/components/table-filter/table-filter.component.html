@@ -10,7 +10,11 @@
       <fa-icon [icon]="iconSearch"></fa-icon>
     </button>
   </div>
-  <app-dropdown-menu
-    [extendClass]="'dropdown-menu-filter'"
-    [toggleBtnText]="'Multi items action'"></app-dropdown-menu>
+  <div class="actions-bar">
+    <button class="btn" (click)="addNewRow.emit()">{{ confirmBtnText }}</button>
+    <app-dropdown-menu
+      class="ml-1"
+      [extendClass]="'dropdown-menu-filter'"
+      [toggleBtnText]="'Multi items action'"></app-dropdown-menu>
+  </div>
 </form>

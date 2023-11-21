@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Input,
   Output,
 } from '@angular/core';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
@@ -20,7 +21,9 @@ export class TableFilterComponent {
     search: '',
   };
 
+  @Input() confirmBtnText: string;
   @Output() public filterValue = new EventEmitter<string>();
+  @Output() public addNewRow = new EventEmitter<unknown>();
 
   public onSearchSubmit(form: NgForm): void {
     this.filterValue.emit(form.value.search);

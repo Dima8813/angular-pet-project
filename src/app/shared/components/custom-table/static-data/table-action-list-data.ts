@@ -1,1 +1,1 @@
-export const tableActionList: string[] = ['Add', 'Delete'];
+export const tableActionList: string[] = ['Add', 'Edit', 'Delete'];

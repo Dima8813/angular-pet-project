@@ -1,0 +1,53 @@
+<form [formGroup]="clinicForm" class="form">
+  <div class="form-field-inline-group">
+    <div class="form-field form-field--small">
+      <label class="form-field__label" for="code">Clinic code</label>
+      <input
+        name="code"
+        id="code"
+        type="text"
+        placeholder="Code"
+        formControlName="code" />
+      <ng-container *ngIf="clinicForm.controls.code as code">
+        <app-input-error
+          *ngIf="code.dirty"
+          [errors]="code.errors"></app-input-error>
+      </ng-container>
+    </div>
+
+    <div class="form-field form-field--small">
+      <label class="form-field__label" for="name">Clinic name</label>
+      <input
+        name="name"
+        id="name"
+        type="text"
+        placeholder="Name"
+        formControlName="name" />
+      <ng-container *ngIf="clinicForm.controls.name as name">
+        <app-input-error
+          *ngIf="name.dirty"
+          [errors]="name.errors"></app-input-error>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label class="form-field__label" for="address">Clinic address</label>
+    <input
+      name="address"
+      id="address"
+      type="text"
+      placeholder="Clinic address"
+      formControlName="address" />
+    <ng-container *ngIf="clinicForm.controls.address as address">
+      <app-input-error
+        *ngIf="address.dirty"
+        [errors]="address.errors"></app-input-error>
+    </ng-container>
+  </div>
+
+  <div class="form-field checkbox">
+    <input name="status" id="status" type="checkbox" formControlName="status" />
+    <label class="form-field__label" for="status">Clinic status</label>
+  </div>
+</form>

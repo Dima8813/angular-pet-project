@@ -1,7 +1,7 @@
 import { Status } from '@shared/components/custom-table/enums';
 
 export interface ClinicTable {
-  id: string;
+  id: number;
   code: string;
   name: string;
   address: string;
