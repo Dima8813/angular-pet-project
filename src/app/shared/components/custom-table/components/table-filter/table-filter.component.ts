@@ -21,7 +21,7 @@ import { DropdownMenuComponent } from '../../../dropdown-menu';
     CommonModule,
     FormsModule,
     FontAwesomeModule,
-    DropdownMenuComponent
+    DropdownMenuComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

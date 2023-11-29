@@ -8,7 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [CommonModule, MatDialogModule, FontAwesomeModule],
-  declarations: [ModalHostComponent, ], //ModalInfoComponent
+  declarations: [ModalHostComponent], //ModalInfoComponent
   providers: [ModalService],
   exports: [], //ModalInfoComponent
 })

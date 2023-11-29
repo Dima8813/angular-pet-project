@@ -8,10 +8,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  MatColumnDef,
-  MatTableDataSource,
-} from '@angular/material/table';
+import { MatColumnDef, MatTableDataSource } from '@angular/material/table';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { PageLayoutComponent } from '@core/components';
@@ -39,7 +36,7 @@ import { BrowserModule } from '@angular/platform-browser';
     ReactiveFormsModule,
 
     DropdownMenuComponent,
-    CustomTableComponent
+    CustomTableComponent,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,

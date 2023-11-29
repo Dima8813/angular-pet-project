@@ -11,8 +11,7 @@
     mat-table
     *ngIf="dataSource"
     [ngClass]="'w-100'"
-    [dataSource]="dataSource"
-  >
+    [dataSource]="dataSource">
     <ng-content></ng-content>
     <ng-container
       *ngFor="let col of displayedColumns"

@@ -17,7 +17,7 @@ import { AppRouteEnum } from '@core/enums';
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    InputErrorComponent
+    InputErrorComponent,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 
 import { Login, User } from '@core/interfaces';
 
-@Injectable({providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly TOKEN_NAME = 'accessToken';
 

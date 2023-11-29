@@ -1,9 +1,10 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   OnInit,
   QueryList,
-  ViewChildren
+  ViewChildren,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PageLayoutComponent } from '@core/components';
@@ -38,7 +39,7 @@ import { BrowserModule } from '@angular/platform-browser';
     ReactiveFormsModule,
 
     DropdownMenuComponent,
-    CustomTableComponent
+    CustomTableComponent,
   ],
   providers: [ClinicService],
   changeDetection: ChangeDetectionStrategy.OnPush,

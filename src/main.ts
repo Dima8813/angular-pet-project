@@ -17,7 +17,7 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(
       AppRoutingModule,
       HttpClientModule,
-      BrowserAnimationsModule,
+      BrowserAnimationsModule
     ),
     {
       provide: HTTP_INTERCEPTORS,
@@ -25,4 +25,4 @@ bootstrapApplication(AppComponent, {
       multi: true,
     },
   ],
-})
+});

@@ -15,7 +15,8 @@ import {
 import {
   MatColumnDef,
   MatTable,
-  MatTableDataSource, MatTableModule,
+  MatTableDataSource,
+  MatTableModule,
 } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -30,13 +31,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './custom-table.component.html',
   styleUrls: ['./custom-table.component.scss'],
   standalone: true,
-  imports: [
-    CommonModule,
-    MatSortModule,
-    MatTableModule,
-
-    TableFilterComponent
-  ],
+  imports: [CommonModule, MatSortModule, MatTableModule, TableFilterComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomTableComponent<T>
