@@ -1,35 +1,34 @@
 import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   OnInit,
   QueryList,
-  ViewChildren,
+  ViewChildren
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  MatColumnDef,
-  MatTableDataSource,
-} from '@angular/material/table';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-
 import { PageLayoutComponent } from '@core/components';
-import { GridColumn } from '@shared/components/custom-table/interfaces';
-import { Status } from '@shared/components/custom-table/enums';
-import { userGridColumns, userGridData } from './static-data';
-import { UserTable } from './interfaces';
-import { DropdownMenuComponent } from '@shared/components/dropdown-menu';
-import { CustomTableComponent } from '@shared/components/custom-table';
 import { PageHeaderComponent } from '@shared/components/page-header';
 import { CardComponent } from '@shared/components/card';
+import { MatColumnDef, MatTableDataSource } from '@angular/material/table';
+import { GridColumn } from '@shared/components/custom-table/interfaces';
+import { Status, TableActionList } from '@shared/components/custom-table/enums';
+import { CustomTableComponent } from '@shared/components/custom-table';
+import { DropdownMenuComponent } from '@shared/components/dropdown-menu';
+import { ClinicService } from '../clinics/services/clinic.service';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { clinicGridColumns } from '../clinics/static-data';
+import { ClinicTable } from '../clinics/interfaces';
+import { Subject, takeUntil } from 'rxjs';
+import { userGridColumns, userGridData } from '../users/static-data';
+import { UserTable } from '../users/interfaces';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss'],
+  standalone: true,
   imports: [
     RouterModule,
     CommonModule,
@@ -41,10 +40,10 @@ import { BrowserModule } from '@angular/platform-browser';
     DropdownMenuComponent,
     CustomTableComponent
   ],
-  standalone: true,
+  providers: [ClinicService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UsersComponent implements OnInit, AfterViewInit {
+export class AdminComponent implements OnInit {
   @ViewChildren(MatColumnDef) columns!: QueryList<MatColumnDef>;
 
   public displayedColumns: GridColumn[] = userGridColumns;

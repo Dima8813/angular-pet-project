@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Subject, takeUntil } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 import { AuthService } from '@shared/services';
+import { InputErrorComponent } from '@shared/components';
 import { User } from '@core/interfaces';
 import { AppRouteEnum } from '@core/enums';
-import { InputErrorComponent } from '@shared/components';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ import { InputErrorComponent } from '@shared/components';
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    InputErrorComponent,
+    InputErrorComponent
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -50,7 +50,7 @@ export class LoginComponent implements OnDestroy {
       .pipe(takeUntil(this.destroyed$))
       .subscribe(() => {
         this.form.reset();
-        this.router.navigate([AppRouteEnum.Users]);
+        this.router.navigate([AppRouteEnum.Admin]);
       });
     this.form.reset();
   }

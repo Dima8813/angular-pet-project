@@ -7,12 +7,22 @@ import {
 } from '@angular/core';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { NgForm } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DropdownMenuComponent } from '../../../dropdown-menu';
 
 @Component({
   selector: 'app-table-filter',
   templateUrl: './table-filter.component.html',
   styleUrls: ['./table-filter.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    FontAwesomeModule,
+    DropdownMenuComponent
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableFilterComponent {

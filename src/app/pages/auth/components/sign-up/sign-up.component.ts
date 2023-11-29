@@ -11,11 +11,11 @@ import { Router, RouterModule } from '@angular/router';
 import { bufferCount, filter, Subject, takeUntil, tap } from 'rxjs';
 
 import { AuthService } from '@shared/services';
+import { InputErrorComponent } from '@shared/components';
 import { UniqueNicknameValidator } from '@core/validations/async-validators';
 import { User } from '@core/interfaces';
 import { AppRouteEnum } from '@core/enums';
 import { CustomValidator } from '@core/validations/custom-validators/custom.validators';
-import { InputErrorComponent } from '@shared/components';
 
 @Component({
   selector: 'app-sign-up',

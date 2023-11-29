@@ -23,9 +23,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { CustomTableModule } from '@shared/components/custom-table/custom-table.module';
 import { ModalService } from '@shared/components/modal/services';
-import { ModalModule } from '@shared/components/modal/modal.module';
 import { InfoModalContentType } from '@shared/components/modal/enums';
-import { ModalInfoComponent } from '@shared/components/modal/components';
 import { InfoModalPayload } from '@shared/components/modal/interfaces';
 import { ClinicModalComponent } from './modals';
 import { firstValueFrom, Subject, takeUntil } from 'rxjs';
@@ -43,7 +41,6 @@ import { ClinicService } from './services/clinic.service';
     CardComponent,
     CustomTableModule,
     MatTableModule,
-    ModalModule,
     FormsModule,
     ReactiveFormsModule,
   ],
@@ -96,22 +93,22 @@ export class ClinicsComponent implements OnInit {
   }
 
   private deleteClinic(row: ClinicTable): void {
-    this.modalService.openModal<InfoModalPayload>(
-      ModalInfoComponent,
-      {
-        title: 'Delete clinic',
-        confirmBtnText: 'Delete',
-        showCancelBtn: true,
-        showHeader: true,
-      },
-      {
-        type: InfoModalContentType.TEXT,
-        text: `Are you sure you want to delete the clinic?`,
-        action: () => {
-          return firstValueFrom(this.clinicService.deleteClinic(row.id));
-        },
-      }
-    );
+    // this.modalService.openModal<InfoModalPayload>(
+    //   ModalInfoComponent,
+    //   {
+    //     title: 'Delete clinic',
+    //     confirmBtnText: 'Delete',
+    //     showCancelBtn: true,
+    //     showHeader: true,
+    //   },
+    //   {
+    //     type: InfoModalContentType.TEXT,
+    //     text: `Are you sure you want to delete the clinic?`,
+    //     action: () => {
+    //       return firstValueFrom(this.clinicService.deleteClinic(row.id));
+    //     },
+    //   }
+    // );
   }
 
   public handleClinic(row: ClinicTable = null): void {

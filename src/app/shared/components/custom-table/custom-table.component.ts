@@ -15,18 +15,28 @@ import {
 import {
   MatColumnDef,
   MatTable,
-  MatTableDataSource,
+  MatTableDataSource, MatTableModule,
 } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 import { FormControl } from '@angular/forms';
 
 import { GridColumn } from './interfaces';
+import { TableFilterComponent } from './components';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-custom-table',
   templateUrl: './custom-table.component.html',
   styleUrls: ['./custom-table.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatSortModule,
+    MatTableModule,
+
+    TableFilterComponent
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomTableComponent<T>
@@ -96,7 +106,7 @@ export class CustomTableComponent<T>
         this.displayedColumnsFiltered.push(x.name);
       });
       this.cd.markForCheck();
-    });
+    }, 0);
   }
 
   public applyFilter(filter: string): void {
