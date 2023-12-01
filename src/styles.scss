@@ -104,6 +104,10 @@ a:not([href]) {
   margin-left: $gap;
 }
 
+.mb-2 {
+  margin-bottom: $gap * 2;
+}
+
 .w-100 {
   width: 100%;
 }

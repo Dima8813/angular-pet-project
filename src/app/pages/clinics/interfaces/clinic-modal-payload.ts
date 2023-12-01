@@ -1,5 +1,5 @@
 import { ClinicTable } from './clinic-table.interface';
-import { TableItemMode } from '@shared/components/custom-table/enums';
+import { TableItemMode } from '@core/enums';
 
 export interface ClinicModalPayload<T> {
   mode: TableItemMode;

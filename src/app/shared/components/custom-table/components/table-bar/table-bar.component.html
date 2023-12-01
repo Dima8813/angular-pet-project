@@ -1,0 +1,15 @@
+<div class="table-bar">
+  <form #form="ngForm" class="table-filter">
+    <div class="table-filter__search">
+      <input
+        class="field-search"
+        name="search"
+        type="text"
+        placeholder="Email"
+        [(ngModel)]="searchForm.search" />
+      <button class="btn-search" (click)="onSearchSubmit(form)">
+        <fa-icon [icon]="iconSearch"></fa-icon>
+      </button>
+    </div>
+  </form>
+</div>

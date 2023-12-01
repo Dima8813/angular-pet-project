@@ -14,4 +14,10 @@ export const RouterLinks: Array<RouterLink> = [
     icon: '',
     activeClass: 'active',
   },
+  {
+    name: AppRouteEnum.Admin,
+    path: `/${AppRouteEnum.Admin}`,
+    icon: '',
+    activeClass: 'active',
+  },
 ];

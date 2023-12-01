@@ -1,102 +1,68 @@
 import {
-  AfterViewInit,
+  AfterContentInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChildren,
-  EventEmitter,
   Input,
-  OnDestroy,
   OnInit,
-  Output,
   QueryList,
   ViewChild,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   MatColumnDef,
+  MatHeaderRowDef,
+  MatRowDef,
   MatTable,
   MatTableDataSource,
+  MatTableModule,
 } from '@angular/material/table';
-import { Subject, takeUntil } from 'rxjs';
-import { MatSort } from '@angular/material/sort';
-import { FormControl } from '@angular/forms';
-
-import { GridColumn } from './interfaces';
+import { MatSortModule } from '@angular/material/sort';
+import { GridColumn } from '@core/interfaces';
+import { TableBarComponent } from './components';
 
 @Component({
   selector: 'app-custom-table',
   templateUrl: './custom-table.component.html',
   styleUrls: ['./custom-table.component.scss'],
+  standalone: true,
+  imports: [CommonModule, MatTableModule, MatSortModule, TableBarComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CustomTableComponent<T>
-  implements OnInit, AfterViewInit, OnDestroy
-{
-  @Input() displayedColumns: GridColumn[] = [];
-  @Input() dataSource: MatTableDataSource<T>;
-  @Input() columnAdd: QueryList<MatColumnDef>;
-  @Input() tableFilter: boolean;
-  @Input() filteredFormControls!: { [key: string]: FormControl };
-
-  @Input() confirmBtnText: string;
-
-  @Output() public addNewRow = new EventEmitter<unknown>();
-
-  @ViewChild(MatSort) public sort: MatSort;
-  @ViewChild(MatTable) public table: MatTable<any>;
+export class CustomTableComponent<T> implements OnInit, AfterContentInit {
+  @ContentChildren(MatHeaderRowDef)
+  public headerRowDefs: QueryList<MatHeaderRowDef>;
+  @ContentChildren(MatRowDef) public rowDefs: QueryList<MatRowDef<T>>;
+  @ViewChild(MatTable, { static: true }) public table: MatTable<T>;
   @ContentChildren(MatColumnDef) public columnDefs: QueryList<MatColumnDef>;
 
+  @Input() public columns: GridColumn[];
+  @Input() public dataSource: MatTableDataSource<T>;
+  @Input() public showTableBar: any = false;
+
+  public notCustomColumns: GridColumn[] = [];
+
   public globalFilter = '';
-  public displayedColumnsFiltered: string[] = [];
   public filteredValues: { [key: string]: string } = {};
 
-  private destroyed$: Subject<void> = new Subject();
-
-  constructor(private readonly cd: ChangeDetectorRef) {}
-
   public ngOnInit(): void {
-    if (!!this.filteredFormControls) {
-      Object.keys(this.filteredFormControls).forEach((property: string) => {
-        this.filteredValues[property] = '';
-      });
+    this.notCustomColumns = this.columns.filter(
+      (item: GridColumn) => !item.customField
+    );
 
-      for (let key in this.filteredValues) {
-        this.filteredFormControls[key].valueChanges
-          .pipe(takeUntil(this.destroyed$))
-          .subscribe((statusFilterValue: string) => {
-            this.filteredValues[key] = statusFilterValue;
-            this.dataSource.filter = JSON.stringify(this.filteredValues);
-          });
-      }
-    }
     this.dataSource.filterPredicate = this.customFilterPredicate();
   }
 
-  public ngOnDestroy(): void {
-    this.destroyed$.next(null);
-    this.destroyed$.complete();
-  }
-
-  public ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-
-    this.displayedColumns = this.displayedColumns.filter(
-      (column: GridColumn) =>
-        !this.columnDefs.some(
-          (columnDef: MatColumnDef) => column.field === columnDef.name
-        )
+  public ngAfterContentInit(): void {
+    this.columnDefs.forEach((columnDef: MatColumnDef) =>
+      this.table.addColumnDef(columnDef)
     );
-    this.displayedColumnsFiltered = this.displayedColumns.map(
-      (column: GridColumn) => column.field
+    this.rowDefs.forEach((rowDef: MatRowDef<T>) =>
+      this.table.addRowDef(rowDef)
     );
-
-    setTimeout(() => {
-      this.columnAdd.forEach((x: MatColumnDef) => {
-        this.table.addColumnDef(x);
-        this.displayedColumnsFiltered.push(x.name);
-      });
-      this.cd.markForCheck();
-    });
+    this.headerRowDefs.forEach((headerRowDef: MatHeaderRowDef) =>
+      this.table.addHeaderRowDef(headerRowDef)
+    );
   }
 
   public applyFilter(filter: string): void {
@@ -108,8 +74,8 @@ export class CustomTableComponent<T>
     const myFilterPredicate = (data: any, filter: string): boolean => {
       let globalMatch = !this.globalFilter;
 
-      if (this.globalFilter && this.listColumnsFiltering.length) {
-        globalMatch = this.listColumnsFiltering.some(
+      if (this.globalFilter && this.columnsToFilter.length) {
+        globalMatch = this.columnsToFilter.some(
           (key: string) =>
             data[key]
               .toString()
@@ -119,7 +85,7 @@ export class CustomTableComponent<T>
         );
       }
 
-      if (!globalMatch && this.listColumnsFiltering.length) {
+      if (!globalMatch && this.columnsToFilter.length) {
         return false;
       }
 
@@ -147,8 +113,8 @@ export class CustomTableComponent<T>
     return true;
   }
 
-  private get listColumnsFiltering(): string[] {
-    return this.displayedColumns
+  private get columnsToFilter(): string[] {
+    return this.columns
       .filter((column: GridColumn) => column.filtered)
       .map((column: GridColumn) => column.field as keyof typeof column);
   }

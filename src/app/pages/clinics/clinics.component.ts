@@ -1,36 +1,38 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  forwardRef,
+  OnDestroy,
   OnInit,
-  QueryList,
-  ViewChildren,
+  ViewChild,
 } from '@angular/core';
-import { PageLayoutComponent } from '@core/components';
-import { CardComponent, PageHeaderComponent } from '@shared/components';
-import { GridColumn } from '@shared/components/custom-table/interfaces';
-import { clinicGridColumns } from './static-data';
-import {
-  MatColumnDef,
-  MatTableDataSource,
-  MatTableModule,
-} from '@angular/material/table';
-import { ClinicModalPayload, ClinicTable } from './interfaces';
-import {
-  Status,
-  TableActionList,
-  TableItemMode,
-} from '@shared/components/custom-table/enums';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 import { CommonModule } from '@angular/common';
-import { CustomTableModule } from '@shared/components/custom-table/custom-table.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { firstValueFrom, Subject, takeUntil } from 'rxjs';
+
+import { PageLayoutComponent } from '@core/components';
+import { GridColumn } from '@core/interfaces';
+import { Status, TableActionList, TableItemMode } from '@core/enums';
+import {
+  CardComponent,
+  CustomTableComponent,
+  DropdownMenuComponent,
+  PageHeaderComponent,
+} from '@shared/components';
 import { ModalService } from '@shared/components/modal/services';
-import { ModalModule } from '@shared/components/modal/modal.module';
-import { InfoModalContentType } from '@shared/components/modal/enums';
+import { ClinicModalPayload, ClinicTable } from './interfaces';
+import { ClinicModalComponent } from './modals';
+import { ClinicService } from './services/clinic.service';
+import { clinicGridColumns } from './static-data';
+import { IconDefinition } from '@fortawesome/fontawesome-common-types';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { NgForm } from '@angular/forms';
 import { ModalInfoComponent } from '@shared/components/modal/components';
 import { InfoModalPayload } from '@shared/components/modal/interfaces';
-import { ClinicModalComponent } from './modals';
-import { firstValueFrom, Subject, takeUntil } from 'rxjs';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ClinicService } from './services/clinic.service';
+import { InfoModalContentType } from '@shared/components/modal/enums';
 
 @Component({
   selector: 'app-clinics',
@@ -41,24 +43,35 @@ import { ClinicService } from './services/clinic.service';
     PageLayoutComponent,
     PageHeaderComponent,
     CardComponent,
-    CustomTableModule,
+    CustomTableComponent,
+    forwardRef(() => CustomTableComponent),
+    MatSortModule,
     MatTableModule,
-    ModalModule,
-    FormsModule,
-    ReactiveFormsModule,
+    MatDialogModule,
+    ClinicModalComponent,
+    DropdownMenuComponent,
   ],
   providers: [ClinicService],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ClinicsComponent implements OnInit {
-  @ViewChildren(MatColumnDef) columns!: QueryList<MatColumnDef>;
-  public displayedColumns: GridColumn[] = clinicGridColumns;
+export class ClinicsComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('sort') public sort: MatSort;
+
+  public gridColumns: GridColumn[] = clinicGridColumns;
+  public displayedColumns: string[] = clinicGridColumns.map(
+    (item: GridColumn) => item.field
+  );
   public dataSource = new MatTableDataSource<ClinicTable>([]);
   public loading = true;
   public readonly status = Status;
 
   private destroyed$: Subject<void> = new Subject();
+
+  public iconSearch: IconDefinition = faSearch;
+  public searchForm: { search: string } = {
+    search: '',
+  };
 
   constructor(
     private clinicService: ClinicService,
@@ -67,6 +80,10 @@ export class ClinicsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.initializeData();
+  }
+
+  public ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
   }
 
   public ngOnDestroy(): void {

@@ -1,12 +1,16 @@
 import { Component, Input } from '@angular/core';
-import { InfoModalContentType } from '../../enums';
-import { InfoModalPayload, ModalChild } from '../../interfaces';
+import { CommonModule } from '@angular/common';
+
 import { ModalService } from '../../services';
+import { InfoModalPayload, ModalChild } from '../../interfaces';
+import { InfoModalContentType } from '../../enums';
 
 @Component({
   selector: 'app-modal-info',
   templateUrl: './modal-info.component.html',
   styleUrls: ['./modal-info.component.scss'],
+  standalone: true,
+  imports: [CommonModule],
 })
 export class ModalInfoComponent implements ModalChild {
   @Input()
