@@ -2,7 +2,6 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
   ContentChildren,
   Input,
   OnInit,
@@ -23,16 +22,14 @@ import { GridColumn } from '@core/interfaces';
 import { TableBarComponent } from './components';
 
 @Component({
-  selector: 'app-custom-table-standalone',
-  templateUrl: './custom-table-standalone.component.html',
-  styleUrls: ['./custom-table-standalone.component.scss'],
+  selector: 'app-custom-table',
+  templateUrl: './custom-table.component.html',
+  styleUrls: ['./custom-table.component.scss'],
   standalone: true,
   imports: [CommonModule, MatTableModule, MatSortModule, TableBarComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CustomTableStandaloneComponent<T>
-  implements OnInit, AfterContentInit
-{
+export class CustomTableComponent<T> implements OnInit, AfterContentInit {
   @ContentChildren(MatHeaderRowDef)
   public headerRowDefs: QueryList<MatHeaderRowDef>;
   @ContentChildren(MatRowDef) public rowDefs: QueryList<MatRowDef<T>>;

@@ -19,7 +19,7 @@ import {
   DropdownMenuComponent,
   PageHeaderComponent,
 } from '@shared/components';
-import { CustomTableStandaloneComponent } from '@shared/components/custom-table-standalone/custom-table-standalone.component';
+import { CustomTableComponent } from '@shared/components/custom-table/custom-table.component';
 
 import { userGridColumns } from './static-data';
 import { UserTable } from './interfaces';
@@ -34,9 +34,9 @@ import { UserService } from './services';
     PageLayoutComponent,
     PageHeaderComponent,
     CardComponent,
-    CustomTableStandaloneComponent,
+    CustomTableComponent,
     DropdownMenuComponent,
-    forwardRef(() => CustomTableStandaloneComponent),
+    forwardRef(() => CustomTableComponent),
     MatSortModule,
     MatTableModule,
   ],

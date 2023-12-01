@@ -18,7 +18,7 @@ import { GridColumn } from '@core/interfaces';
 import { Status, TableActionList, TableItemMode } from '@core/enums';
 import {
   CardComponent,
-  CustomTableStandaloneComponent,
+  CustomTableComponent,
   DropdownMenuComponent,
   PageHeaderComponent,
 } from '@shared/components';
@@ -43,8 +43,8 @@ import { InfoModalContentType } from '@shared/components/modal/enums';
     PageLayoutComponent,
     PageHeaderComponent,
     CardComponent,
-    CustomTableStandaloneComponent,
-    forwardRef(() => CustomTableStandaloneComponent),
+    CustomTableComponent,
+    forwardRef(() => CustomTableComponent),
     MatSortModule,
     MatTableModule,
     MatDialogModule,

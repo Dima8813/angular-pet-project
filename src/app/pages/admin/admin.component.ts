@@ -18,7 +18,7 @@ import {
   DropdownMenuComponent,
   PageHeaderComponent,
 } from '@shared/components';
-import { CustomTableStandaloneComponent } from '@shared/components/custom-table-standalone/custom-table-standalone.component';
+import { CustomTableComponent } from '@shared/components/custom-table/custom-table.component';
 import { adminGridColumns } from './static-data';
 import { AdminServices } from './services/admin.services';
 import { AdminTable } from './interfaces';
@@ -34,9 +34,9 @@ import { GridColumn } from '@core/interfaces';
     PageLayoutComponent,
     PageHeaderComponent,
     CardComponent,
-    CustomTableStandaloneComponent,
+    CustomTableComponent,
     DropdownMenuComponent,
-    forwardRef(() => CustomTableStandaloneComponent),
+    forwardRef(() => CustomTableComponent),
     MatSortModule,
     MatTableModule,
   ],

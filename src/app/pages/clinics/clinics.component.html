@@ -8,7 +8,7 @@
   </app-card>
 
   <app-card>
-    <app-custom-table-standalone
+    <app-custom-table
       [hidden]="loading"
       [dataSource]="dataSource"
       [columns]="gridColumns"
@@ -36,6 +36,6 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </app-custom-table-standalone>
+    </app-custom-table>
   </app-card>
 </app-page-layout>
