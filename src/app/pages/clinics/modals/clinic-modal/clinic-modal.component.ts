@@ -4,13 +4,13 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-
-import { ModalService } from '@shared/components/modal/services';
-import { ClinicModalPayload } from '../../interfaces';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+
+import { Status } from '@core/enums';
+import { ModalService } from '@shared/components/modal/services';
 import { InputErrorComponent } from '@shared/components';
-import { Status } from '@shared/components/custom-table/enums';
+import { ClinicModalPayload } from '../../interfaces';
 
 @Component({
   selector: 'app-clinic-modal',
@@ -43,7 +43,7 @@ export class ClinicModalComponent implements OnInit {
       const { id, ...row } = this.payload.row;
       const updateValue = {
         ...row,
-        status: row.status === Status.Active ? true : false,
+        status: row.status === Status.Active,
       };
       this.clinicForm.setValue(updateValue);
     }

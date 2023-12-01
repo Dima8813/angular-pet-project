@@ -33,6 +33,12 @@ const routes: Routes = [
       import('@pages/clinics/clinics.component').then(m => m.ClinicsComponent),
   },
   {
+    path: AppRouteEnum.Admin,
+    canActivate: [AuthGuard],
+    loadComponent: () =>
+      import('@pages/admin/admin.component').then(m => m.AdminComponent),
+  },
+  {
     path: '**',
     canActivate: [AuthGuard],
     loadComponent: () =>

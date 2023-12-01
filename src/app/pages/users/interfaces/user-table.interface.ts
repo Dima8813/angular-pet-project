@@ -1,8 +1,10 @@
-import { Status } from '@shared/components/custom-table/enums';
-
 export interface UserTable {
-  status: Status;
-  position: number;
-  weight: number;
-  symbol: string;
+  id: number;
+  username: string;
+  email: string;
+  profilePicture: string;
+  bio: string;
+  password: string;
+  name: string;
+  surname: string;
 }

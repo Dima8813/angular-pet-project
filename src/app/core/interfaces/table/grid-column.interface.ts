@@ -5,4 +5,5 @@ export interface GridColumn {
   filtered?: boolean;
   width?: number;
   align?: string;
+  customField?: boolean;
 }

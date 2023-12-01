@@ -8,17 +8,22 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
 import { ModalService } from '../../services';
 import { DialogData } from '../../interfaces';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-modal-host',
   templateUrl: './modal-host.component.html',
   styleUrls: ['./modal-host.component.scss'],
+  standalone: true,
+  imports: [CommonModule, FontAwesomeModule],
 })
 export class ModalHostComponent implements OnInit, OnDestroy {
   @ViewChild('content', { static: true, read: ViewContainerRef })

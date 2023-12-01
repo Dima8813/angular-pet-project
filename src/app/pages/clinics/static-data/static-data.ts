@@ -1,15 +1,16 @@
-import { GridColumn } from '@shared/components/custom-table/interfaces';
-import { Status } from '@shared/components/custom-table/enums';
+import { GridColumn } from '@core/interfaces';
 
 export const clinicGridColumns: GridColumn[] = [
   {
     field: 'code',
     header: 'Clinic code',
+    filtered: true,
   },
   {
     field: 'name',
     header: 'Clinic name',
     align: 'center',
+    filtered: true,
     sortable: true,
   },
   {
@@ -21,5 +22,11 @@ export const clinicGridColumns: GridColumn[] = [
     field: 'status',
     header: 'Status',
     align: 'center',
+    customField: true,
+  },
+  {
+    field: 'actions',
+    header: 'Actions',
+    customField: true,
   },
 ];

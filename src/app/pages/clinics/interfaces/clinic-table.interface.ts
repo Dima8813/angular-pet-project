@@ -1,4 +1,4 @@
-import { Status } from '@shared/components/custom-table/enums';
+import { Status } from '@core/enums';
 
 export interface ClinicTable {
   id: number;

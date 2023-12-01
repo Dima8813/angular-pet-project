@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableFilterComponent } from './table-filter.component';
+import { AdminComponent } from './admin.component';
 
-describe('TableFilterComponent', () => {
-  let component: TableFilterComponent;
-  let fixture: ComponentFixture<TableFilterComponent>;
+describe('AdminComponent', () => {
+  let component: AdminComponent;
+  let fixture: ComponentFixture<AdminComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TableFilterComponent],
+      declarations: [AdminComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TableFilterComponent);
+    fixture = TestBed.createComponent(AdminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

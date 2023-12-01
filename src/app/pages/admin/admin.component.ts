@@ -8,27 +8,27 @@ import {
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
 
 import { PageLayoutComponent } from '@core/components';
-import { GridColumn } from '@core/interfaces';
 import {
   CardComponent,
   DropdownMenuComponent,
   PageHeaderComponent,
 } from '@shared/components';
 import { CustomTableStandaloneComponent } from '@shared/components/custom-table-standalone/custom-table-standalone.component';
-
-import { userGridColumns } from './static-data';
-import { UserTable } from './interfaces';
-import { UserService } from './services';
+import { adminGridColumns } from './static-data';
+import { AdminServices } from './services/admin.services';
+import { AdminTable } from './interfaces';
+import { GridColumn } from '@core/interfaces';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss'],
+  standalone: true,
   imports: [
     CommonModule,
     PageLayoutComponent,
@@ -40,22 +40,22 @@ import { UserService } from './services';
     MatSortModule,
     MatTableModule,
   ],
-  providers: [UserService],
-  standalone: true,
+  providers: [AdminServices],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
+export class AdminComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('sort') public sort: MatSort;
-  public gridColumns: GridColumn[] = userGridColumns;
-  public displayedColumns: string[] = userGridColumns.map(
+
+  public gridColumns: GridColumn[] = adminGridColumns;
+  public displayedColumns: string[] = adminGridColumns.map(
     (item: GridColumn) => item.field
   );
-  public dataSource = new MatTableDataSource<UserTable>([]);
-
+  public dataSource = new MatTableDataSource<AdminTable>([]);
   public loading = true;
+
   private destroyed$: Subject<void> = new Subject();
 
-  constructor(private userService: UserService) {}
+  constructor(private adminServices: AdminServices) {}
 
   public ngOnInit(): void {
     this.initializeData();
@@ -71,11 +71,12 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private initializeData(): void {
-    this.userService
-      .getUsers()
+    this.loading = true;
+    this.adminServices
+      .getAdmins()
       .pipe(takeUntil(this.destroyed$))
-      .subscribe((users: UserTable[]) => {
-        this.dataSource.data = users;
+      .subscribe((admins: AdminTable[]) => {
+        this.dataSource.data = admins;
         this.loading = false;
       });
   }

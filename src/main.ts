@@ -1,13 +1,30 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { bootstrapApplication } from '@angular/platform-browser';
 
-import { AppModule } from './app/app.module';
+import { AccessTokenInterceptor } from '@core/interceptors';
+import { AppComponent } from './app/app.component';
+import { AppRoutingModule } from './app/app-routing.module';
 import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    importProvidersFrom(
+      AppRoutingModule,
+      HttpClientModule,
+      BrowserAnimationsModule,
+      MatDialogModule
+    ),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AccessTokenInterceptor,
+      multi: true,
+    },
+  ],
+});
