@@ -1,9 +1,26 @@
+.mat-table thead,
+.mat-table tbody,
+.mat-table tfoot,
+mat-header-row,
+mat-row,
+mat-footer-row,
+[mat-header-row],
+[mat-row],
+[mat-footer-row],
+.mat-table-sticky {
+  background: none;
+}
 .custom-table {
   table {
     table-layout: fixed;
   }
 
+  thead {
+    @include background-opacity($gray, 0.2);
+  }
+
   tbody {
+    background: none !important;
     tr {
       &.active,
       &:hover {
@@ -49,5 +66,12 @@
   td.mat-cell,
   td.mat-footer-cell {
     border: none;
+  }
+
+  .column-filtering {
+    margin-top: 10px;
+    .form-field {
+      margin-bottom: 0;
+    }
   }
 }

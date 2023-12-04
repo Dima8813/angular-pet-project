@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   forwardRef,
   OnDestroy,
@@ -24,6 +25,7 @@ import { CustomTableComponent } from '@shared/components/custom-table/custom-tab
 import { userGridColumns } from './static-data';
 import { UserTable } from './interfaces';
 import { UserService } from './services';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-users',
@@ -39,6 +41,8 @@ import { UserService } from './services';
     forwardRef(() => CustomTableComponent),
     MatSortModule,
     MatTableModule,
+
+    ReactiveFormsModule,
   ],
   providers: [UserService],
   standalone: true,
@@ -52,10 +56,17 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
   );
   public dataSource = new MatTableDataSource<UserTable>([]);
 
+  public filteredControls: { [key: string]: FormControl } = {
+    name: new FormControl(''),
+  };
+
   public loading = true;
   private destroyed$: Subject<void> = new Subject();
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private cd: ChangeDetectorRef
+  ) {}
 
   public ngOnInit(): void {
     this.initializeData();
@@ -77,6 +88,7 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe((users: UserTable[]) => {
         this.dataSource.data = users;
         this.loading = false;
+        this.cd.markForCheck();
       });
   }
 }

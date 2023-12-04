@@ -44,6 +44,7 @@ a:not([href]) {
 }
 
 .custom-table {
+  margin: -$gap * 2;
   input {
     border: none;
     border-bottom: 2px solid $border-field-form;
