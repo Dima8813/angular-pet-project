@@ -5,6 +5,7 @@ export const userGridColumns: GridColumn[] = [
     field: 'name',
     header: 'Name',
     sortable: true,
+    customField: true,
   },
   {
     field: 'surname',

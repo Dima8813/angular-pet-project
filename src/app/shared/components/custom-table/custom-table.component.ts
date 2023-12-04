@@ -4,6 +4,7 @@ import {
   Component,
   ContentChildren,
   Input,
+  OnDestroy,
   OnInit,
   QueryList,
   ViewChild,
@@ -20,6 +21,8 @@ import {
 import { MatSortModule } from '@angular/material/sort';
 import { GridColumn } from '@core/interfaces';
 import { TableBarComponent } from './components';
+import { FormControl } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-custom-table',
@@ -29,7 +32,9 @@ import { TableBarComponent } from './components';
   imports: [CommonModule, MatTableModule, MatSortModule, TableBarComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CustomTableComponent<T> implements OnInit, AfterContentInit {
+export class CustomTableComponent<T>
+  implements OnInit, AfterContentInit, OnDestroy
+{
   @ContentChildren(MatHeaderRowDef)
   public headerRowDefs: QueryList<MatHeaderRowDef>;
   @ContentChildren(MatRowDef) public rowDefs: QueryList<MatRowDef<T>>;
@@ -38,18 +43,24 @@ export class CustomTableComponent<T> implements OnInit, AfterContentInit {
 
   @Input() public columns: GridColumn[];
   @Input() public dataSource: MatTableDataSource<T>;
-  @Input() public showTableBar: any = false;
+  @Input() public showTableBar = false;
+
+  @Input() filteredControls: { [key: string]: FormControl } = {};
 
   public notCustomColumns: GridColumn[] = [];
 
   public globalFilter = '';
   public filteredValues: { [key: string]: string } = {};
+  private destroyed$: Subject<void> = new Subject();
 
   public ngOnInit(): void {
+    if (!!this.filteredControls) {
+      this.handleFilterColumns();
+    }
+
     this.notCustomColumns = this.columns.filter(
       (item: GridColumn) => !item.customField
     );
-
     this.dataSource.filterPredicate = this.customFilterPredicate();
   }
 
@@ -63,6 +74,11 @@ export class CustomTableComponent<T> implements OnInit, AfterContentInit {
     this.headerRowDefs.forEach((headerRowDef: MatHeaderRowDef) =>
       this.table.addHeaderRowDef(headerRowDef)
     );
+  }
+
+  public ngOnDestroy(): void {
+    this.destroyed$.next(null);
+    this.destroyed$.complete();
   }
 
   public applyFilter(filter: string): void {
@@ -92,10 +108,11 @@ export class CustomTableComponent<T> implements OnInit, AfterContentInit {
       let searchString = JSON.parse(filter);
       return this.isMatch(data, searchString);
     };
+
     return myFilterPredicate;
   }
 
-  private isMatch(data: any, searchString: { [key: string]: string }) {
+  private isMatch(data: any, searchString: { [key: string]: string }): boolean {
     for (const key in searchString) {
       const searchData = data[key];
       if (
@@ -111,6 +128,22 @@ export class CustomTableComponent<T> implements OnInit, AfterContentInit {
     }
 
     return true;
+  }
+
+  private handleFilterColumns(): void {
+    Object.keys(this.filteredControls).forEach((property: string) => {
+      this.filteredValues[property] = this.filteredControls[property].value;
+    });
+
+    this.dataSource.filter = JSON.stringify(this.filteredValues);
+    for (let key in this.filteredValues) {
+      this.filteredControls[key].valueChanges
+        .pipe(takeUntil(this.destroyed$))
+        .subscribe((statusFilterValue: string) => {
+          this.filteredValues[key] = statusFilterValue;
+          this.dataSource.filter = JSON.stringify(this.filteredValues);
+        });
+    }
   }
 
   private get columnsToFilter(): string[] {

@@ -4,13 +4,13 @@ export const clinicGridColumns: GridColumn[] = [
   {
     field: 'code',
     header: 'Clinic code',
-    filtered: true,
+    filtered: false,
   },
   {
     field: 'name',
     header: 'Clinic name',
     align: 'center',
-    filtered: true,
+    filtered: false,
     sortable: true,
   },
   {
