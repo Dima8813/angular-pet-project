@@ -135,7 +135,7 @@ a:not([href]) {
 .badge {
   @include background-opacity($gray);
   color: $gray;
-  padding: $gap / 2 $gap * 2;
+  padding: calc($gap / 2) $gap * 2;
   border-radius: $border-radius-base * 2;
   max-width: 100px;
   width: 100%;
