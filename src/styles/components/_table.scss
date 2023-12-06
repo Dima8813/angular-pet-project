@@ -1,101 +1,28 @@
-.mat-table thead,
-.mat-table tbody,
-.mat-table tfoot,
-mat-header-row,
-mat-row,
-mat-footer-row,
-[mat-header-row],
-[mat-row],
-[mat-footer-row],
-.mat-table-sticky {
-  background: none;
-}
 .custom-table {
-  table {
-    table-layout: fixed;
-    background: transparent;
+  .mdc-data-table__cell,
+  .mdc-data-table__header-cell {
+    padding: $gap * 2;
   }
-
-  thead {
-    tr {
-      th {
-        @include background-opacity($gray, 0.2);
-      }
-      &:first-child {
-        th {
-          &:first-child {
-            border-top-left-radius: 8px;
-          }
-          &:last-child {
-            border-top-right-radius: 8px;
-          }
-        }
-      }
+  .mat-mdc-table {
+    thead {
+      @include background-opacity($gray, 0.2);
     }
-  }
 
-  tbody {
-    tr {
-      &.active,
+    .mdc-data-table__row {
       &:hover {
-        @include background-opacity($gray);
-      }
-      &:last-child {
-        td {
-          &:first-child {
-            border-top-bottom-radius: 8px;
-          }
-          &:last-child {
-            border-top-bottom-radius: 8px;
-          }
+        .mat-mdc-cell {
+          @include background-opacity($gray);
         }
       }
     }
   }
 
-  th.mat-header-cell {
+  .mdc-data-table__header-cell {
+    border: none;
     vertical-align: top;
   }
 
-  th.mat-header-cell,
-  td.mat-cell {
-    text-align: left;
-    padding: $gap * 2;
-    &.center {
-      text-align: center;
-      .mat-sort-header-container {
-        justify-content: center;
-      }
-    }
-  }
-
-  th.mat-header-cell,
-  td.mat-cell,
-  td.mat-footer-cell {
-    color: $black;
-    font-size: 1rem;
-  }
-
-  th.mat-header-cell:first-of-type,
-  td.mat-cell:first-of-type {
-    padding-left: $gap * 2;
-  }
-
-  th.mat-header-cell:last-of-type,
-  td.mat-cell:last-of-type {
-    padding-right: $gap * 2;
-  }
-
-  th.mat-header-cell,
-  td.mat-cell,
-  td.mat-footer-cell {
-    border: none;
-  }
-
-  .column-filtering {
-    margin-top: 10px;
-    .form-field {
-      margin-bottom: 0;
-    }
+  .mdc-data-table__cell {
+    overflow: visible;
   }
 }

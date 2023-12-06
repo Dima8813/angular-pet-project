@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { CommonModule } from '@angular/common';
-import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { firstValueFrom, Subject, takeUntil } from 'rxjs';
 
 import { PageLayoutComponent } from '@core/components';
@@ -28,11 +27,11 @@ import { ClinicService } from './services/clinic.service';
 import { clinicGridColumns } from './static-data';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { NgForm } from '@angular/forms';
 import { ModalInfoComponent } from '@shared/components/modal/components';
 import { InfoModalPayload } from '@shared/components/modal/interfaces';
 import { InfoModalContentType } from '@shared/components/modal/enums';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-clinics',

@@ -2,6 +2,9 @@
 
 .modal-container {
   position: relative;
+  background: $bg-modal;
+  padding: $gap * 2;
+  border-radius: $border-radius-base * 2;
 
   .btn-close {
     position: absolute;

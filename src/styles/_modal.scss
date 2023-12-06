@@ -1,9 +1,7 @@
 .cdk-global-overlay-wrapper {
-  &--scrollable {
-    pointer-events: auto !important;
-    overflow: auto !important;
-    @include background-opacity($black, 0.7);
-  }
+  pointer-events: auto !important;
+  overflow: auto !important;
+  @include background-opacity($black, 0.7);
 
   .cdk-overlay-pane {
     max-height: initial;

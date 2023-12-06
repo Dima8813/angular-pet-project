@@ -1,34 +1,35 @@
 <div class="modal-container">
-  <div *ngIf="data.hostSettings?.showHeader">
-    <h4 class="modal-title">{{ data.hostSettings?.title }}</h4>
-  </div>
+  @if (data.hostSettings?.showHeader) {
+    <div *ngIf="data.hostSettings?.showHeader">
+      <h4 class="modal-title">{{ data.hostSettings?.title }} 222</h4>
+    </div>
+  }
 
-  <button
-    class="btn-close"
-    *ngIf="data.hostSettings?.showCloseIcon"
-    (click)="cancelClick()">
-    <fa-icon [icon]="iconTimes"></fa-icon>
-  </button>
+  @if (data.hostSettings?.showCloseIcon) {
+    <button
+      class="btn-close"
+      (click)="cancelClick()">
+      <fa-icon [icon]="iconTimes"></fa-icon>
+    </button>
+  }
 
   <ng-container #content></ng-container>
 
   <div class="button-wrapper">
-    <button
-      class="btn btn-large"
-      *ngIf="data.hostSettings?.confirmBtnText"
-      (click)="confirm()"
-      [disabled]="isDisable$ | async">
+    @if (data.hostSettings?.confirmBtnText) {
+      <button
+        class="btn btn-large"
+       (click)="confirm()"
+        [disabled]="isDisable$ | async">
       {{ data.hostSettings?.confirmBtnText }}
-    </button>
-    <button
-      class="btn btn-white btn-large"
-      *ngIf="data.hostSettings?.showCancelBtn && (isLoading$ | async) !== true"
-      (click)="cancelClick()">
-      {{
-        data.hostSettings?.cancelBtnText
-          ? data.hostSettings?.cancelBtnText
-          : 'Cancel'
-      }}
-    </button>
+      </button>
+    }
+    @if (data.hostSettings?.showCancelBtn && (isLoading$ | async) !== true) {
+      <button
+        class="btn btn-white btn-large"
+        (click)="cancelClick()">
+        {{ data.hostSettings?.cancelBtnText ? data.hostSettings?.cancelBtnText : 'Cancel'}}
+      </button>
+    }
   </div>
 </div>

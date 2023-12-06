@@ -1,10 +1,10 @@
 import { ComponentType } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { BehaviorSubject, Observable, take } from 'rxjs';
 import { ModalHostComponent } from '../components';
 import { DialogData, ModalHostSettings } from '../interfaces';
 import { DefaultModalHostSettings, dialogConfig } from '../static-data';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({ providedIn: 'root' })
 export class ModalService {
