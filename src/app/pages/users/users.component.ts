@@ -5,7 +5,8 @@ import {
   Component,
   forwardRef,
   OnDestroy,
-  OnInit, signal,
+  OnInit,
+  signal,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
