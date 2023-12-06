@@ -1,6 +1,6 @@
 import { ComponentType } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { BehaviorSubject, Observable, take } from 'rxjs';
 import { ModalHostComponent } from '../components';
 import { DialogData, ModalHostSettings } from '../interfaces';

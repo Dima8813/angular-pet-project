@@ -9,7 +9,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -26,6 +25,7 @@ import { userGridColumns } from './static-data';
 import { UserTable } from './interfaces';
 import { UserService } from './services';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-users',

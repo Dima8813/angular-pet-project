@@ -7,10 +7,9 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { CommonModule } from '@angular/common';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { firstValueFrom, Subject, takeUntil } from 'rxjs';
 
 import { PageLayoutComponent } from '@core/components';
@@ -33,6 +32,7 @@ import { NgForm } from '@angular/forms';
 import { ModalInfoComponent } from '@shared/components/modal/components';
 import { InfoModalPayload } from '@shared/components/modal/interfaces';
 import { InfoModalContentType } from '@shared/components/modal/enums';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-clinics',

@@ -1,7 +1,7 @@
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { bootstrapApplication } from '@angular/platform-browser';
 
 import { AccessTokenInterceptor } from '@core/interceptors';

@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
 
 import { PageLayoutComponent } from '@core/components';
@@ -23,6 +22,7 @@ import { adminGridColumns } from './static-data';
 import { AdminServices } from './services/admin.services';
 import { AdminTable } from './interfaces';
 import { GridColumn } from '@core/interfaces';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-admin',
