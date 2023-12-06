@@ -13,18 +13,42 @@ mat-footer-row,
 .custom-table {
   table {
     table-layout: fixed;
+    background: transparent;
   }
 
   thead {
-    @include background-opacity($gray, 0.2);
+    tr {
+      th {
+        @include background-opacity($gray, 0.2);
+      }
+      &:first-child {
+        th {
+          &:first-child {
+            border-top-left-radius: 8px;
+          }
+          &:last-child {
+            border-top-right-radius: 8px;
+          }
+        }
+      }
+    }
   }
 
   tbody {
-    background: none !important;
     tr {
       &.active,
       &:hover {
         @include background-opacity($gray);
+      }
+      &:last-child {
+        td {
+          &:first-child {
+            border-top-bottom-radius: 8px;
+          }
+          &:last-child {
+            border-top-bottom-radius: 8px;
+          }
+        }
       }
     }
   }
