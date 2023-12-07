@@ -16,7 +16,7 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2020",
+    "target": "ES2022",
     "module": "es2020",
     "lib": ["es2020", "dom"],
     "strictPropertyInitialization": false,
@@ -34,7 +34,8 @@
       "@features/*": ["./src/app/features/*"],
       "@pages": ["./src/app/pages"],
       "@pages/*": ["./src/app/pages/*"]
-    }
+    },
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

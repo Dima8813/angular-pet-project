@@ -10,6 +10,11 @@ import {
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatSortModule } from '@angular/material/sort';
+import { GridColumn } from '@core/interfaces';
+import { TableBarComponent } from './components';
+import { FormControl } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 import {
   MatColumnDef,
   MatHeaderRowDef,
@@ -18,11 +23,6 @@ import {
   MatTableDataSource,
   MatTableModule,
 } from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort';
-import { GridColumn } from '@core/interfaces';
-import { TableBarComponent } from './components';
-import { FormControl } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-custom-table',

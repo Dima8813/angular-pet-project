@@ -6,11 +6,13 @@ import {
   forwardRef,
   OnDestroy,
   OnInit,
+  signal,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
 
 import { PageLayoutComponent } from '@core/components';
@@ -25,7 +27,6 @@ import { CustomTableComponent } from '@shared/components/custom-table/custom-tab
 import { userGridColumns } from './static-data';
 import { UserTable } from './interfaces';
 import { UserService } from './services';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-users',

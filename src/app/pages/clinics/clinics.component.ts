@@ -7,11 +7,11 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { CommonModule } from '@angular/common';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
-import { firstValueFrom, Subject, takeUntil } from 'rxjs';
+import { firstValueFrom, Subject, takeUntil, tap } from 'rxjs';
 
 import { PageLayoutComponent } from '@core/components';
 import { GridColumn } from '@core/interfaces';
@@ -29,7 +29,6 @@ import { ClinicService } from './services/clinic.service';
 import { clinicGridColumns } from './static-data';
 import { IconDefinition } from '@fortawesome/fontawesome-common-types';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { NgForm } from '@angular/forms';
 import { ModalInfoComponent } from '@shared/components/modal/components';
 import { InfoModalPayload } from '@shared/components/modal/interfaces';
 import { InfoModalContentType } from '@shared/components/modal/enums';
@@ -125,7 +124,15 @@ export class ClinicsComponent implements OnInit, AfterViewInit, OnDestroy {
         type: InfoModalContentType.TEXT,
         text: `Are you sure you want to delete the clinic?`,
         action: () => {
-          return firstValueFrom(this.clinicService.deleteClinic(row.id));
+          return firstValueFrom(
+            this.clinicService.deleteClinic(row.id).pipe(
+              tap(() => {
+                this.dataSource.data = this.dataSource.data.filter(
+                  (rowTable: ClinicTable) => rowTable.id !== row.id
+                );
+              })
+            )
+          );
         },
       }
     );
@@ -149,12 +156,36 @@ export class ClinicsComponent implements OnInit, AfterViewInit, OnDestroy {
         row,
         action: (formData: Omit<ClinicTable, 'id'>) => {
           const operation = row
-            ? this.clinicService.editClinic(row.id, formData)
-            : this.clinicService.addClinic(formData);
+            ? this.editClinic(row.id, formData)
+            : this.createClinic(formData);
 
           return firstValueFrom(operation);
         },
       }
+    );
+  }
+
+  private editClinic(id: number, formData: Omit<ClinicTable, 'id'>) {
+    return this.clinicService.editClinic(id, formData).pipe(
+      tap(() => {
+        this.dataSource.data = this.dataSource.data.map(
+          (clinicRow: ClinicTable) => {
+            if (clinicRow.id !== id) {
+              return clinicRow;
+            }
+
+            return { ...clinicRow, ...formData };
+          }
+        );
+      })
+    );
+  }
+
+  private createClinic(formData: Omit<ClinicTable, 'id'>) {
+    return this.clinicService.addClinic(formData).pipe(
+      tap((data: ClinicTable) => {
+        this.dataSource.data = [...this.dataSource.data, data];
+      })
     );
   }
 }

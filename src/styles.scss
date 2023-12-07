@@ -43,21 +43,6 @@ a:not([href]) {
   cursor: pointer;
 }
 
-.custom-table {
-  margin: -$gap * 2;
-  input {
-    border: none;
-    border-bottom: 2px solid $border-field-form;
-    border-radius: 0;
-  }
-
-  .ng-valid.ng-dirty:not([formGroupName]):not([formArrayName]):not(
-      [ngModelGroup]
-    ):not(form) {
-    border-color: $border-field-form;
-  }
-}
-
 .btn {
   background-color: $bg-btn;
   border-radius: $border-radius-btn;
@@ -135,7 +120,7 @@ a:not([href]) {
 .badge {
   @include background-opacity($gray);
   color: $gray;
-  padding: $gap / 2 $gap * 2;
+  padding: calc($gap / 2) $gap * 2;
   border-radius: $border-radius-base * 2;
   max-width: 100px;
   width: 100%;
