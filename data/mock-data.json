@@ -120,5 +120,6 @@
       "weight": 20.1797,
       "symbol": "Ne"
     }
-  ]
+  ],
+  "skills": ["Angular", "Typescript", "Html", "Scss"]
 }

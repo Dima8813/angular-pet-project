@@ -5,4 +5,5 @@ export enum AppRouteEnum {
   Users = 'users',
   Clinics = 'clinics',
   Admin = 'admin',
+  ReactiveForm = 'reactive-form',
 }

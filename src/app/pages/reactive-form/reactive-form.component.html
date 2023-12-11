@@ -1,0 +1,203 @@
+<app-page-layout>
+  <app-page-header
+    [title]="'Reactive Form'"
+    [subTitle]="'Example reactive form, custom validators'">
+  </app-page-header>
+
+  <app-card>
+    <form class="form" [formGroup]="form">
+      <div class="form-field-inline-group">
+        <div class="form-field">
+          <label class="form-field__label" for="name">First name</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter your First name"
+            formControlName="firstName" />
+          @if (form.controls.firstName && form.controls.firstName.dirty) {
+          <app-input-error
+            [errors]="form.controls.firstName.errors"></app-input-error>
+          }
+        </div>
+        <div class="form-field">
+          <label class="form-field__label" for="lastName">Last name</label>
+          <input
+            type="text"
+            id="lastName"
+            placeholder="Enter your Last name"
+            formControlName="lastName" />
+          @if (form.controls.lastName && form.controls.lastName.dirty) {
+          <app-input-error
+            [errors]="form.controls.lastName.errors"></app-input-error>
+          }
+        </div>
+        <div class="form-field">
+          <label class="form-field__label" for="nickname">Nickname</label>
+          <input
+            type="text"
+            id="nickname"
+            placeholder="Enter your Nickname"
+            formControlName="nickName" />
+          @if (form.controls.nickName && form.controls.nickName.dirty) {
+          <app-input-error
+            [errors]="form.controls.nickName.errors"></app-input-error>
+          }
+        </div>
+        <div class="form-field">
+          <label class="form-field__label" for="email">Email</label>
+          <input
+            type="text"
+            id="email"
+            placeholder="Enter your Email"
+            formControlName="email" />
+          @if (form.controls.email && form.controls.email.dirty) {
+          <app-input-error
+            [errors]="form.controls.email.errors"></app-input-error>
+          }
+        </div>
+      </div>
+      <div class="form-field-inline-group">
+        <div class="form-field">
+          <label class="form-field__label" for="year-of-birth"
+            >Year of birth</label
+          >
+          <select formControlName="yearOfBirth" id="year-of-birth">
+            @for (year of years; track $index) {
+            <option [value]="year">{{ year }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label class="form-field__label" for="passport"
+            >Passport Number</label
+          >
+          <input
+            name="passport"
+            type="text"
+            id="passport"
+            placeholder="Passport number"
+            formControlName="passport" />
+          @if (form.controls.passport && form.controls.passport.dirty) {
+          <app-input-error
+            [errors]="form.controls.passport.errors"></app-input-error>
+          }
+        </div>
+      </div>
+
+      <fieldset formGroupName="address">
+        <legend>Address</legend>
+        <div class="form-field">
+          <label class="form-field__label" for="full-address"
+            >Full Address</label
+          >
+          <input
+            formControlName="fullAddress"
+            type="text"
+            id="full-address"
+            placeholder="Street name and house number" />
+          @if (form.controls.address.controls.fullAddress &&
+          form.controls.address.controls.fullAddress.dirty) {
+          <app-input-error
+            [errors]="
+              form.controls.address.controls.fullAddress.errors
+            "></app-input-error>
+          }
+        </div>
+        <div class="form-field">
+          <label class="form-field__label" for="city">City</label>
+          <input
+            formControlName="city"
+            type="text"
+            id="city"
+            placeholder="City" />
+          @if (form.controls.address.controls.city &&
+          form.controls.address.controls.city.dirty) {
+          <app-input-error
+            [errors]="
+              form.controls.address.controls.city.errors
+            "></app-input-error>
+          }
+        </div>
+        <div class="form-field">
+          <label class="form-field__label" for="postCode">Post code</label>
+          <input
+            formControlName="postCode"
+            type="text"
+            id="postCode"
+            placeholder="Post code" />
+          @if (form.controls.address.controls.postCode &&
+          form.controls.address.controls.postCode.dirty) {
+          <app-input-error
+            [errors]="
+              form.controls.address.controls.postCode.errors
+            "></app-input-error>
+          }
+        </div>
+      </fieldset>
+
+      <fieldset formArrayName="phones">
+        <legend>Phones</legend>
+
+        @for (phone of form.controls.phones.controls; track phone; let i =
+        $index) {
+        <div class="form-field" [formGroupName]="i">
+          <label class="form-field__label" for="phone-{{ i }}"
+            >Phone number</label
+          >
+          <div class="control-container">
+            <select class="phone-label-dropdown" formControlName="label">
+              @for (phoneLabel of phoneLabels; track $index) {
+              <option [value]="phoneLabel">{{ phoneLabel }}</option>
+              }
+            </select>
+            <input
+              formControlName="phone"
+              type="text"
+              placeholder="Enter"
+              id="phone-{{ i }}" />
+            @if (i === 0) {
+            <button
+              class="action-phone-btn add-btn"
+              type="button"
+              (click)="addPhone()">
+              <fa-icon [icon]="iconPlus"></fa-icon>
+            </button>
+            } @if (i > 0) {
+            <button
+              class="action-phone-btn remove-btn"
+              (click)="removePhone(i)"
+              type="button">
+              <fa-icon [icon]="iconMinus"></fa-icon>
+            </button>
+            }
+          </div>
+        </div>
+        }
+      </fieldset>
+
+      <fieldset formGroupName="skills" class="skills">
+        <legend>User skills</legend>
+        @if (skills$ | async; as skills) { @for (skill of skills; track $index)
+        {
+        <div class="skill-container">
+          <input
+            type="checkbox"
+            [formControlName]="skill"
+            id="skill-{{ skill }}" />
+          <label for="skill-{{ skill }}">{{ skill | titlecase }}</label>
+        </div>
+        } } @else {
+        <p>Skills loading...</p>
+        }
+      </fieldset>
+
+      <button
+        class="btn save-btn"
+        (click)="onSubmit()"
+        [disabled]="form.invalid || form.pending">
+        Save
+      </button>
+    </form>
+  </app-card>
+</app-page-layout>

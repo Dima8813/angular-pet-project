@@ -20,4 +20,10 @@ export const RouterLinks: Array<RouterLink> = [
     icon: '',
     activeClass: 'active',
   },
+  {
+    name: AppRouteEnum.ReactiveForm,
+    path: `/${AppRouteEnum.ReactiveForm}`,
+    icon: '',
+    activeClass: 'active',
+  },
 ];

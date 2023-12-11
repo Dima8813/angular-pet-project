@@ -1,0 +1,31 @@
+@import 'variables';
+
+.control-container {
+  display: flex;
+  align-items: center;
+  gap: $gap * 2;
+  .phone-label-dropdown {
+    width: 10%;
+  }
+}
+
+.action-phone-btn {
+  flex: 0 0 30px;
+  height: 30px;
+  background: $white;
+  border: 2px solid $turquoise;
+  border-radius: 50%;
+  color: $turquoise;
+  padding: 0;
+  cursor: pointer;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+.save-btn {
+  margin-top: $gap;
+}
