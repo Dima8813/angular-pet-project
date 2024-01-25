@@ -27,6 +27,15 @@
       "surname": "Kudriavtsev",
       "bio": "awd",
       "id": 3
+    },
+    {
+      "email": "test1@gmail.com",
+      "password": "$2a$10$fKaiPI3Ogdbofh.czGsZE.Aj/ZOJi2OGLjAW53v2wNGRaaNyaDDNO",
+      "username": "Dima",
+      "name": "Dima",
+      "surname": "Dima",
+      "bio": "test bio",
+      "id": 4
     }
   ],
   "clinics": [
