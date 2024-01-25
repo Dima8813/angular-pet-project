@@ -1,0 +1,11 @@
+<div class="btn-group" appDropdown>
+  <button type="button" class="btn dropdown-toggle">
+    {{ btnName }}
+  </button>
+  <ul class="dropdown-menu">
+    <ng-container *ngIf="dropDownList.length > 0; else other_content">
+      <li *ngFor="let item of dropDownList">{{ item.name }}</li>
+    </ng-container>
+    <ng-template #other_content><li>List is empty...</li></ng-template>
+  </ul>
+</div>

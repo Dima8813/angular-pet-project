@@ -27,8 +27,6 @@ import { ClinicModalPayload, ClinicTable } from './interfaces';
 import { ClinicModalComponent } from './modals';
 import { ClinicService } from './services/clinic.service';
 import { clinicGridColumns } from './static-data';
-import { IconDefinition } from '@fortawesome/fontawesome-common-types';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { ModalInfoComponent } from '@shared/components/modal/components';
 import { InfoModalPayload } from '@shared/components/modal/interfaces';
 import { InfoModalContentType } from '@shared/components/modal/enums';
@@ -67,7 +65,6 @@ export class ClinicsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private destroyed$: Subject<void> = new Subject();
 
-  public iconSearch: IconDefinition = faSearch;
   public searchForm: { search: string } = {
     search: '',
   };

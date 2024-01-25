@@ -1,0 +1,25 @@
+@import 'variables';
+@import 'mixins';
+
+.btn-group {
+  position: relative;
+  display: inline-block;
+
+  .dropdown-menu {
+    @include reset-list;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 160px;
+    background-color: $white;
+    border-radius: $border-radius-base;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: none;
+  }
+
+  &.open {
+    .dropdown-menu {
+      display: block;
+    }
+  }
+}

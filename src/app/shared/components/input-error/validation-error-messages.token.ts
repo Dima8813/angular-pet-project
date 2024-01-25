@@ -8,6 +8,7 @@ export const ERROR_MESSAGES: { [key: string]: (args?: any) => string } = {
     `The length should be at least ${requiredLength} characters`,
   banWords: ({ bannedWord }) => `The value "${bannedWord}" is banned`,
   uniqueNickname: () => `Nickname is taken`,
+  invalidPassport: () => `Allowed format id AB123456`,
 };
 
 export const VALIDATION_ERROR_MESSAGES = new InjectionToken(

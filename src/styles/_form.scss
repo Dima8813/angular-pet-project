@@ -8,7 +8,8 @@ input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px $bg-color-field-form inset;
 }
 
-input:not([type='checkbox']):not([type='radio']) {
+input:not([type='checkbox']):not([type='radio']),
+select {
   width: 100%;
   padding: $gap;
   background-color: $bg-color-field-form;
@@ -29,6 +30,7 @@ input[type='checkbox'] {
   margin: 0 $gap 0 0;
   height: 20px;
   width: 20px;
+  vertical-align: top;
   -webkit-appearance: none;
   &:checked {
     border: 2px solid $border-field-form-valid;
@@ -57,14 +59,12 @@ input[type='checkbox'] {
 .form-field-inline-group {
   display: flex;
   justify-content: space-between;
+  gap: $gap * 2;
 }
 
 .form-field {
   width: 100%;
   margin-bottom: $gap * 2;
-  &--small {
-    max-width: 48%;
-  }
 
   &.checkbox {
     display: flex;
@@ -87,11 +87,11 @@ input[type='checkbox'] {
   color: #3155e6;
 }
 
-.ng-valid.ng-dirty:not([formGroupName]):not([formArrayName]):not(
-    [ngModelGroup]
-  ):not(form)input:not([type='checkbox']) {
-  border-color: $border-field-form-valid;
-}
+//.ng-valid.ng-dirty:not([formGroupName]):not([formArrayName]):not(
+//    [ngModelGroup]
+//  ):not(form)input:not([type='checkbox']) {
+//  border-color: $border-field-form-valid;
+//}
 
 .ng-invalid.ng-dirty:not([formArrayName]):not(form) {
   border-color: $border-field-form-invalid;

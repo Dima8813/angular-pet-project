@@ -14,4 +14,22 @@ export class CustomValidator {
         : { banWords: { bannedWord: foundBannedWorld } };
     };
   }
+
+  public static passportValidation(): ValidatorFn {
+    return (
+      control: AbstractControl<string | null>
+    ): ValidationErrors | null => {
+      const val = control.value;
+
+      if (!val) {
+        return null;
+      }
+
+      if (!val.toString().match(/^[A-Z]{2}[0-9]{6}$/)) {
+        return { invalidPassport: true };
+      }
+
+      return null;
+    };
+  }
 }

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AuthGuard } from '@shared/guards/auth.guard';
 import { AppRouteEnum } from '@core/enums';
+import { ReactiveFormComponent } from '@pages/reactive-form/reactive-form.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: AppRouteEnum.Login },
@@ -37,6 +38,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadComponent: () =>
       import('@pages/admin/admin.component').then(m => m.AdminComponent),
+  },
+  {
+    path: AppRouteEnum.ReactiveForm,
+    canActivate: [AuthGuard],
+    loadComponent: () =>
+      import('@pages/reactive-form/reactive-form.component').then(
+        m => m.ReactiveFormComponent
+      ),
   },
   {
     path: '**',
