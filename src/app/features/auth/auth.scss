@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.auth-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+
+  border: 1px solid lightgray;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}

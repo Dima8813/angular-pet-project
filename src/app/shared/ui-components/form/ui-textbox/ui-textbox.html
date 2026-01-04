@@ -1,0 +1,14 @@
+<kendo-label [text]="required() ? labelText() + ' *' : labelText()">
+  <kendo-textbox
+    [value]="value()"
+    (valueChange)="value.set($event)"
+    [disabled]="disabled()"
+    [readonly]="readonly()"
+    [class]="{'ng-invalid': errors().length, 'ng-touched': dirty()}"
+  />
+</kendo-label>
+
+@if (errors().length && invalid() && dirty() ) {
+  <ui-form-errors [errors]="errors()" />
+}
+

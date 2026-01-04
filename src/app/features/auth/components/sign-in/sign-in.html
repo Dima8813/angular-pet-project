@@ -1,0 +1,25 @@
+<form (submit)="onSubmit($event)">
+  <!--
+  <p>{{signInForm.firstName().required() | json}}</p>
+  <p>{{signInForm().value() | json}}</p>
+  <p>{{signInForm.firstName().value() | json}}</p>
+  <p>{{signInForm.firstName().errors().length | json}}</p>
+  <p>{{signInForm.firstName().touched() | json}}</p>
+  <p>invalid: {{signInForm.firstName().invalid() | json}}</p>
+  <p>dirty: {{signInForm.firstName().dirty() | json}}</p>
+  <p>touched11111222: {{signInForm.firstName().touched() | json}}</p>
+  <p>touched11111222: {{signInForm.lastName().touched() | json}}</p>
+  <hr>
+  -->
+
+  <ui-textbox
+    [labelText]="'First Name'"
+    [field]="signInForm.firstName"
+  />
+  <ui-textbox
+    [labelText]="'Last Name'"
+    [field]="signInForm.lastName"
+  />
+
+  <button type="submit" [disabled]="signInForm().invalid()">Submit</button>
+</form>
