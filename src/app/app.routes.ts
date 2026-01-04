@@ -4,9 +4,14 @@ import { authRoutes } from './features/auth/auth.routes';
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full',
+  },
+  {
     path: 'auth',
     loadComponent: () => import('./features/auth/auth').then(m => m.Auth),
-    children: authRoutes
+    children: authRoutes,
   },
   {
     path: '',

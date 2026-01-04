@@ -1,41 +1,36 @@
 import { Component, signal } from '@angular/core';
-import { apply, Field, form, minLength, required, schema, Schema } from '@angular/forms/signals';
-import { UiTextbox } from '@shared/ui-components';
+import { apply, Field, form } from '@angular/forms/signals';
+import { UiButton, UiTextbox } from '@shared/ui-components';
+import { RouterLink } from '@angular/router';
+import { firstNameSchema, lastNameSchema } from '@shared/form-schemas';
 
-interface User {
+interface SignInForm {
   firstName: string;
   lastName: string;
 }
 
-const initialUser: User = {
+const initialSignIn: SignInForm = {
   firstName: '',
   lastName: ''
 };
 
-const firstNameSchema: Schema<string> = schema((patch) => {
-  required(patch, {message: 'This field is required'})
-  minLength(patch, 3, {message: 'This field is too short!'})
-})
-
-const lastNameSchema: Schema<string> = schema((patch) => {
-  required(patch, {message: 'This field is required'})
-  minLength(patch, 3, {message: 'This field is too short!'})
-})
 
 @Component({
   selector: 'app-sign-in',
   imports: [
     Field,
     UiTextbox,
+    RouterLink,
+    UiButton,
   ],
   standalone: true,
   templateUrl: './sign-in.html',
   styleUrl: './sign-in.scss',
 })
 export class SignIn {
-  protected readonly user =  signal<User>(initialUser);
+  protected readonly user =  signal<SignInForm>(initialSignIn);
 
-  signInForm = form<User>(this.user, (path) => {
+  signInForm = form<SignInForm>(this.user, (path) => {
     apply(path.firstName, firstNameSchema);
     apply(path.lastName, lastNameSchema);
   })

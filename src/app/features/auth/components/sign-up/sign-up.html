@@ -1,0 +1,22 @@
+<form (submit)="onSubmit($event)">
+  <ui-textbox
+    [labelText]="'First Name'"
+    [field]="signUpForm.firstName"
+  />
+  <ui-textbox
+    [labelText]="'Last Name'"
+    [field]="signUpForm.lastName"
+  />
+  <ui-textbox
+    [labelText]="'Email'"
+    [field]="signUpForm.email"
+  />
+  <ui-button
+    [themeColor]="'secondary'"
+    [disabled]="signUpForm().invalid()"
+  >Sign Up</ui-button>
+
+  <div>
+    I already have an account. <a [routerLink]="['/auth', 'sign-in']">Sign In</a>
+  </div>
+</form>

@@ -20,6 +20,12 @@
     [labelText]="'Last Name'"
     [field]="signInForm.lastName"
   />
+  <ui-button
+    [themeColor]="'secondary'"
+    [disabled]="signInForm().invalid()"
+  >Sign In</ui-button>
 
-  <button type="submit" [disabled]="signInForm().invalid()">Submit</button>
+  <div>
+    Don't have an account? <a [routerLink]="['/auth', 'sign-up']">Sign Up</a>
+  </div>
 </form>
