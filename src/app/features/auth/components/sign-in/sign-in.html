@@ -20,12 +20,13 @@
     [labelText]="'Last Name'"
     [field]="signInForm.lastName"
   />
+
+  <app-ui-check-box [labelText]="'Confirm'" [field]="signInForm.confirm" />
+
   <ui-button
     [themeColor]="'secondary'"
     [disabled]="signInForm().invalid()"
   >Sign In</ui-button>
 
-  <div>
-    Don't have an account? <a [routerLink]="['/auth', 'sign-up']">Sign Up</a>
-  </div>
+  <div>Don't have an account? <a [routerLink]="['/auth', 'sign-up']">Sign Up</a></div>
 </form>

@@ -1,0 +1,19 @@
+<div class="k-form-field-checkbox-wrap">
+  <kendo-checkbox
+    #checkbox
+    [checkedState]="value()"
+    (checkedStateChange)="value.set($event)"
+    [disabled]="disabled()"
+    [rounded]="rounded()"
+  />
+
+  <kendo-label
+    [for]="checkbox"
+    class="k-checkbox-label"
+    [text]="required() ? labelText() + ' *' : labelText()"
+  />
+
+  @if (errors().length && invalid() && dirty()) {
+    <ui-form-errors [errors]="errors()" />
+  }
+</div>
