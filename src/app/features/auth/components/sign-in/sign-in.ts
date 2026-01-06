@@ -1,26 +1,25 @@
 import { Component, signal } from '@angular/core';
-import { apply, disabled, Field, form } from '@angular/forms/signals';
-import { UiButton, UiCheckBox, UiTextbox } from '@shared/ui-components';
+import { apply,  Field, form } from '@angular/forms/signals';
+import { UiButton, UiCheckBox, UiRadiobutton, UiTextbox } from '@shared/ui-components';
 import { RouterLink } from '@angular/router';
-import { schema, Schema, required } from '@angular/forms/signals';
+import { required } from '@angular/forms/signals';
 import { firstNameSchema, lastNameSchema } from '@shared/form-schemas';
 import { CheckBoxState } from '@progress/kendo-angular-inputs';
+import { JsonPipe } from '@angular/common';
 
 interface SignInForm {
   firstName: string;
   lastName: string;
   confirm: CheckBoxState;
+  answer: string;
 }
 
 const initialSignIn: SignInForm = {
   firstName: '',
   lastName: '',
-  confirm: false
+  confirm: false,
+  answer: 'Decline',
 };
-
-export const checkBoxSchema: Schema<string> = schema((patch) => {
-  disabled(patch)
-})
 
 @Component({
   selector: 'app-sign-in',
@@ -30,6 +29,8 @@ export const checkBoxSchema: Schema<string> = schema((patch) => {
     RouterLink,
     UiButton,
     UiCheckBox,
+    UiRadiobutton,
+    JsonPipe,
   ],
   standalone: true,
   templateUrl: './sign-in.html',

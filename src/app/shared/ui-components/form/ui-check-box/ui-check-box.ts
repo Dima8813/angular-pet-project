@@ -5,7 +5,7 @@ import { LabelComponent } from '@progress/kendo-angular-label';
 import { UiFormErrors } from '../ui-form-errors/ui-form-errors';
 
 @Component({
-  selector: 'app-ui-check-box',
+  selector: 'ui-check-box',
   standalone: true,
   imports: [
     CheckBoxComponent,

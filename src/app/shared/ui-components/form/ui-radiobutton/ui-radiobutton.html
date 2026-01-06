@@ -1,0 +1,21 @@
+<div class="k-form-field-radiobutton-wrap">
+  <input
+    #radio
+    type="radio"
+    kendoRadioButton
+    [value]="option()"
+    [checked]="value() === option()"
+    (change)="value.set(option())"
+    [size]="size()"
+  />
+
+  <kendo-label
+    [for]="radio"
+    class="k-checkbox-label"
+    [text]="required() ? labelText() + ' *' : labelText()"
+  />
+
+  @if (errors().length && invalid() && dirty()) {
+    <ui-form-errors [errors]="errors()" />
+  }
+</div>
