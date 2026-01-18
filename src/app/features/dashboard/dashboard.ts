@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { TextBoxComponent } from '@progress/kendo-angular-inputs';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
   imports: [
-    TextBoxComponent,
     ReactiveFormsModule
   ],
   standalone: true,

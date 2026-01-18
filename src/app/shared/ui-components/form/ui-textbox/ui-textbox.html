@@ -1,10 +1,13 @@
 <kendo-label [text]="required() ? labelText() + ' *' : labelText()">
   <kendo-textbox
+    [type]="type()"
+    [placeholder]="placeholder()"
     [value]="value()"
     (valueChange)="value.set($event)"
     [disabled]="disabled()"
     [readonly]="readonly()"
     [class]="{'ng-invalid': errors().length, 'ng-touched': dirty()}"
+    [fillMode]="fillMode()"
   />
 </kendo-label>
 

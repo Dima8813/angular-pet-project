@@ -11,6 +11,10 @@ export const lastNameSchema: Schema<string> = schema((patch) => {
   minLength(patch, 3, {message: 'This field is too short!'})
 })
 
+export const passwordSchema: Schema<string> = schema((patch) => {
+  required(patch, {message: 'This field is required'})
+})
+
 export const emailSchema: Schema<string> = schema((patch) => {
   required(patch, {message: 'This field is required'})
   email(patch, {message: 'The field is not valid'})

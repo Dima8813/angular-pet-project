@@ -1,48 +1,43 @@
 import { Component, signal } from '@angular/core';
 import { apply,  Field, form } from '@angular/forms/signals';
-import { UiButton, UiCheckBox, UiRadiobutton, UiTextbox } from '@shared/ui-components';
+import { UiButton, UiCheckBox, UiTextbox } from '@shared/ui-components';
 import { RouterLink } from '@angular/router';
 import { required } from '@angular/forms/signals';
-import { firstNameSchema, lastNameSchema } from '@shared/form-schemas';
+import { firstNameSchema, passwordSchema } from '@shared/form-schemas';
 import { CheckBoxState } from '@progress/kendo-angular-inputs';
-import { JsonPipe } from '@angular/common';
 
 interface SignInForm {
-  firstName: string;
-  lastName: string;
-  confirm: CheckBoxState;
-  answer: string;
+  userName: string;
+  password: string;
+  remember: CheckBoxState;
 }
 
 const initialSignIn: SignInForm = {
-  firstName: '',
-  lastName: '',
-  confirm: false,
-  answer: 'Decline',
+  userName: '',
+  password: '',
+  remember: false,
 };
 
 @Component({
   selector: 'app-sign-in',
   imports: [
-    Field,
     UiTextbox,
-    RouterLink,
+    Field,
     UiButton,
+    RouterLink,
     UiCheckBox,
-    UiRadiobutton,
-    JsonPipe,
+
   ],
   standalone: true,
   templateUrl: './sign-in.html',
-  styleUrl: './sign-in.scss',
 })
 export class SignIn {
   protected readonly user =  signal<SignInForm>(initialSignIn);
 
   signInForm = form<SignInForm>(this.user, (path) => {
-    apply(path.firstName, firstNameSchema);
-    apply(path.lastName, lastNameSchema);
-    required(path.confirm, {message: 'This field is required'})
+    apply(path.userName, firstNameSchema);
+    apply(path.password, passwordSchema);
+    required(path.remember, {message: 'This field is required'})
   })
 
   onSubmit(event: SubmitEvent): void {

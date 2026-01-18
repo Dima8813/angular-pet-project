@@ -1,4 +1,4 @@
-<form (submit)="onSubmit($event)">
+<form class="k-d-flex k-flex-col k-gap-4" (submit)="onSubmit($event)">
   <ui-textbox
     [labelText]="'First Name'"
     [field]="signUpForm.firstName"
@@ -8,13 +8,18 @@
     [field]="signUpForm.lastName"
   />
   <ui-textbox
-    [labelText]="'Email'"
-    [field]="signUpForm.email"
+    [type]="'password'"
+    [labelText]="'Password'"
+    [field]="signUpForm.password"
   />
-  <ui-button
-    [themeColor]="'secondary'"
-    [disabled]="signUpForm().invalid()"
-  >Sign Up</ui-button>
+
+  <ui-textbox
+    [type]="'password'"
+    [labelText]="'Confirm password'"
+    [field]="signUpForm.confirmPassword"
+  />
+
+  <ui-button [disabled]="signUpForm().invalid()">Create Account</ui-button>
 
   <div>
     I already have an account. <a [routerLink]="['/auth', 'sign-in']">Sign In</a>

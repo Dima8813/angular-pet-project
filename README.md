@@ -1,3 +1,7 @@
+
+Template example [Example template link](https://preview.sprukomarket.com/blazor/webapp/server/mudblazor/ynex/dist/html/index).
+
+
 # AngularSkills21
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.

@@ -1,13 +1,8 @@
 import { Routes } from '@angular/router';
-import { MainLayout } from './layout';
 import { authRoutes } from './features/auth/auth.routes';
+import { Base } from '@layout/base/base';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'auth',
-    pathMatch: 'full',
-  },
   {
     path: 'auth',
     loadComponent: () => import('./features/auth/auth').then(m => m.Auth),
@@ -15,7 +10,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: MainLayout,
+    component: Base,
     children: [
       {
         path: '',
@@ -27,6 +22,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/dashboard/dashboard')
             .then(m => m.Dashboard),
+      },
+
+      {
+        path: 'components',
+        loadComponent: () =>
+          import('./features/components/components')
+            .then(m => m.Components),
       },
     ]
   }

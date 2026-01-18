@@ -1,1 +1,28 @@
+.k-button {
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &-solid-primary:disabled {
+    background-color: rgb(132, 90, 223);
+    color: rgb(255, 255, 255);
+    opacity: 0.65;
+  }
+
+  &-solid-secondary:disabled {
+    background-color: rgb(132, 90, 223);
+    color: rgb(255, 255, 255);
+    opacity: 0.65;
+  }
+
+  &-solid-secondary {
+    color: rgb(255, 255, 255);
+    &:disabled {
+      background-color: rgba(73, 182, 245);
+      opacity: 0.65;
+    }
+  }
+}
 

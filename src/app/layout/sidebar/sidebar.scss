@@ -1,0 +1,11 @@
+.sidebar {
+  width: 240px;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: width .1s ease,margin .1s ease-out;
+  z-index: 999;
+  background-color: #fff;
+  border-right: 1px solid #e9ecef;
+}

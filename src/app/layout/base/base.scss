@@ -1,0 +1,18 @@
+.main-wrapper {
+  display: flex;
+
+  .page-wrapper {
+    min-height: 100vh;
+    width: calc(100% - 240px);
+    margin-left: 240px;
+    display: flex;
+    flex-direction: column;
+    transition: margin .1s ease,width .1s ease;
+
+    .page-content {
+      flex-grow: 1;
+      padding: 1.5rem;
+      margin-top: 60px;
+    }
+  }
+}

@@ -38,6 +38,7 @@
     "@progress/kendo-angular-intl": "21.3.0",
     "@progress/kendo-angular-l10n": "21.3.0",
     "@progress/kendo-angular-label": "^21.3.0",
+    "@progress/kendo-angular-layout": "^21.3.0",
     "@progress/kendo-angular-navigation": "21.3.0",
     "@progress/kendo-angular-popup": "21.3.0",
     "@progress/kendo-angular-utils": "21.3.0",
@@ -45,6 +46,8 @@
     "@progress/kendo-licensing": "^1.7.0",
     "@progress/kendo-svg-icons": "^4.0.0",
     "@progress/kendo-theme-default": "12.2.3",
+    "@progress/kendo-theme-material": "^12.3.0",
+    "@progress/kendo-theme-utils": "^12.3.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

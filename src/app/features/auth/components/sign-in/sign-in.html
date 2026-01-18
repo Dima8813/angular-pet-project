@@ -1,37 +1,31 @@
-<form (submit)="onSubmit($event)">
-  <p>{{signInForm().value() | json}}</p>
-  <!--
-  <p>{{signInForm.firstName().required() | json}}</p>
-  <p>{{signInForm().value() | json}}</p>
-  <p>{{signInForm.firstName().value() | json}}</p>
-  <p>{{signInForm.firstName().errors().length | json}}</p>
-  <p>{{signInForm.firstName().touched() | json}}</p>
-  <p>invalid: {{signInForm.firstName().invalid() | json}}</p>
-  <p>dirty: {{signInForm.firstName().dirty() | json}}</p>
-  <p>touched11111222: {{signInForm.firstName().touched() | json}}</p>
-  <p>touched11111222: {{signInForm.lastName().touched() | json}}</p>
-  <hr>
-  -->
-
+<form
+  class="k-d-flex k-flex-col k-gap-4"
+  (submit)="onSubmit($event)"
+>
   <ui-textbox
-    [labelText]="'First Name'"
-    [field]="signInForm.firstName"
-  />
-  <ui-textbox
-    [labelText]="'Last Name'"
-    [field]="signInForm.lastName"
+    labelText="User Name"
+    placeholder="User Name"
+    [field]="signInForm.userName"
   />
 
-  <ui-check-box [labelText]="'Confirm'" [field]="signInForm.confirm" />
+  <ui-textbox
+    type="password"
+    labelText="Password"
+    placeholder="Password"
+    [field]="signInForm.password"
+  />
 
-  <ui-button
-    [themeColor]="'secondary'"
-    [disabled]="signInForm().invalid()"
-  >Sign In</ui-button>
+  <ui-check-box
+    labelText="Remember password?"
+    [field]="signInForm.remember"
+  />
 
-  <div>Don't have an account? <a [routerLink]="['/auth', 'sign-up']">Sign Up</a></div>
+  <ui-button [disabled]="signInForm().invalid()">
+    Sign In
+  </ui-button>
 
-  <ui-radiobutton [option]="'Confirm'" [field]="signInForm.answer" />
-  <ui-radiobutton [option]="'Decline'" [field]="signInForm.answer" />
-
+  <div class="k-text-center">
+    Don't have an account?
+    <a [routerLink]="['/auth', 'sign-up']">Sign Up</a>
+  </div>
 </form>

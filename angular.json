@@ -30,22 +30,22 @@
               }
             ],
             "styles": [
-              {
-                "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
-              },
-              "src/styles.scss"
+              "src/styles/index.scss"
             ],
             "polyfills": [
               "@angular/localize/init"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles"]
+            }
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "10MB",
+                  "maximumError": "10MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -78,11 +78,7 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "styles": [
-              {
-                "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
-              }
-            ]
+            "styles": []
           }
         }
       }

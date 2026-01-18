@@ -1,15 +1,5 @@
-:host {
-  display: flex;
-  align-items: center;
-  height: 100%;
+.authentication-cover {
+  background-image: url('/img-auth.jpg');
+  background-size: cover;
 }
 
-.auth-wrapper {
-  max-width: 600px;
-  width: 100%;
-  margin: 0 auto;
-
-  border: 1px solid lightgray;
-  padding: 1rem;
-  border-radius: 0.5rem;
-}

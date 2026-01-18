@@ -7,13 +7,15 @@ import { emailSchema, firstNameSchema, lastNameSchema } from '@shared/form-schem
 interface SignUpForm {
   firstName: string;
   lastName: string;
-  email: string;
+  password: string;
+  confirmPassword: string;
 }
 
 const initialSignUp: SignUpForm = {
   firstName: '',
   lastName: '',
-  email: '',
+  password: '',
+  confirmPassword: '',
 };
 
 @Component({
@@ -26,7 +28,6 @@ const initialSignUp: SignUpForm = {
   ],
   standalone: true,
   templateUrl: './sign-up.html',
-  styleUrl: './sign-up.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignUp {
@@ -35,7 +36,6 @@ export class SignUp {
   signUpForm = form<SignUpForm>(this.userCreate, (path) => {
     apply(path.firstName, firstNameSchema);
     apply(path.lastName, lastNameSchema);
-    apply(path.email, emailSchema);
   })
 
   onSubmit(event: SubmitEvent) {
