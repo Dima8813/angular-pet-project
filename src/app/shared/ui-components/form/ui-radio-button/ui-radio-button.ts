@@ -14,18 +14,18 @@ import { LabelComponent } from '@progress/kendo-angular-label';
 import { UiFormErrors } from '../ui-form-errors/ui-form-errors';
 
 @Component({
-  selector: 'ui-radiobutton',
+  selector: 'ui-radio-button',
   imports: [
     RadioButtonDirective,
     LabelComponent,
     UiFormErrors
   ],
   standalone: true,
-  templateUrl: './ui-radiobutton.html',
-  styleUrl: './ui-radiobutton.scss',
+  templateUrl: './ui-radio-button.html',
+  styleUrl: './ui-radio-button.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UiRadiobutton implements  AfterViewInit, FormValueControl<any>{
+export class UiRadioButton implements  AfterViewInit, FormValueControl<any>{
   @ViewChild(RadioButtonComponent) private radio!: RadioButtonComponent;
 
   // Base Inputs

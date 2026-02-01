@@ -1,5 +1,4 @@
 export * from './base/base'
 export * from './footer/footer'
-export * from './header/header'
 export * from './navbar/navbar'
 export * from './sidebar/sidebar'

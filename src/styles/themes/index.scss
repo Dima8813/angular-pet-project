@@ -1,11 +1,17 @@
 :root {
-  --color-app-surface: #f9fafb;
-  --color-on-app-surface: #000;
+  --BC-100: rgba(255, 255, 255, 1); //Base
+  --BC-200: rgba(240,241,247, 1);
+  --BC-105: rgba(255, 255, 255, .05);
+  --BC-110: rgba(255, 255, 255, .1);
+  --BC-150: rgba(163, 174, 209, 1);
+  --BC-900: rgba(0, 0, 0, 1);
 
-  --color-primary: rgba(132,90,223, 1);
-  --color-primary-hover: rgba(132,90,223, .9);
-  --color-primary-active: rgba(132,90,223, .9);
+  --PC-100: rgba(132,90,223, 1); // Primary
+  --PC-110: rgba(132,90,223, .1);
+  --PC-190: rgba(132,90,223, .9);
 
-  --color-secondary: rgb(73, 182, 245);
-  --color-secondary-hover: rgb(73, 182, 245, .9);
+  --SC-100: rgba(73, 182, 245, 1); // Secondary
+  --SC-190: rgb(73, 182, 245, .9);
+
+  --TC-100: rgb(17, 28, 67, 1); // tertiary
 }

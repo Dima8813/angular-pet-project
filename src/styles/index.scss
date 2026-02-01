@@ -6,17 +6,17 @@
 
 @use "@progress/kendo-theme-material/scss/all" as * with (
   $kendo-colors: (
-    app-surface: var(--color-app-surface),
-    on-app-surface: var(--color-on-app-surface),
+    app-surface: var(--BC-100),
+    on-app-surface: var(--BC-900),
     surface-alt: yellow,
 
-    primary: var(--color-primary),
-    primary-hover: var(--color-primary-hover),
-    primary-active: var(--color-primary-hover),
+    primary: var(--PC-100),
+    primary-hover: var(--PC-190),
+    primary-active: var(--PC-190),
 
-    secondary: var(--color-secondary),
-    secondary-hover: var(--color-secondary-hover),
-    secondary-active: var(--color-secondary-hover),
+    secondary: var(--SC-100),
+    secondary-hover: var(--SC-190),
+    secondary-active: var(--SC-190),
   ),
   $kendo-font-size: 0.8125rem,
   $kendo-line-height: 19.512px,
@@ -31,4 +31,5 @@
   $kendo-button-active-shadow: none,
   $kendo-button-selected-shadow: none,
 );
+
 @use "@progress/kendo-theme-utils/scss/all" as *;

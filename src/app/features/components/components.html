@@ -1,13 +1,18 @@
 <div class="page-head">
   <h1>Components</h1>
 </div>
-<div class="k-row k-gap-4">
-  <div>
+
+<div class="k-display-flex k-flex-column k-gap-4">
+  <div class="component-box typography">
+    <h3 class="component-box__title">Typography</h3>
     <p>The holographic principle, theorized to be a property of quantum gravity, postulates that the description. The holographic principle, theorized to be a property of quantum gravity, postulates that the description. The holographic principle, theorized to be a property of quantum gravity, postulates that the description. The holographic principle, theorized to be a property of quantum gravity, postulates that the description.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquam aliquid magni odit unde velit voluptates, voluptatum. Ab animi consectetur culpa dolorum, eveniet illum, ipsa quis rem totam vitae, voluptatibus.</p>
   </div>
-  <div class="k-col-size-100">
-    <h3>Buttons:</h3>
-    <div class="k-d-flex k-flex-wrap k-gap-2">
+
+
+  <div class="component-box button ">
+    <h3 class="component-box__title">Button</h3>
+    <div class="k-d-flex k-gap-2">
       <ui-button [themeColor]="'primary'">Change</ui-button>
       <ui-button [themeColor]="'secondary'">Secondary</ui-button>
       <ui-button [themeColor]="'tertiary'">Tertiary</ui-button>
@@ -21,7 +26,28 @@
       <ui-button [themeColor]="'none'">None</ui-button>
     </div>
   </div>
-  <div class="k-col-size-100">
-    222
+
+  <div class="component-box typography">
+    <h3 class="component-box__title">UI textbox</h3>
+    <form class="k-display-flex k-flex-column k-gap-4">
+      <ui-textbox
+        labelText="Name"
+        placeholder="Name"
+        [field]="demoForm.name"
+      />
+      <ui-check-box
+        labelText="Remember password?"
+        [field]="demoForm.remember"
+      />
+      <div class="field-row field-row__inline">
+        <ui-radio-button [labelText]="'Male'" [option]="'male'" [field]="demoForm.gender"></ui-radio-button>
+        <ui-radio-button [labelText]="'Female'" [option]="'female'" [field]="demoForm.gender"></ui-radio-button>
+      </div>
+    </form>
+
+    <pre>{{demoForm().value() | json}}</pre>
   </div>
+
+
 </div>
+
